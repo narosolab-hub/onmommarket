@@ -3,29 +3,44 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>온맘마켓 플랫폼 컨셉 기획안</title>
+<title>온맘마켓 · 공구플랫폼 기획</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
 :root {
-  --primary: #1A6840;
-  --primary-light: #EAF7F0;
-  --primary-dark: #0F4D2E;
-  --accent: #FF6B35;
-  --accent-light: #FFF1EC;
-  --purple: #6366F1;
-  --purple-light: #EEF2FF;
+  --primary: #2563EB;
+  --primary-light: #EFF6FF;
+  --primary-dark: #1E40AF;
+  --green: #10B981;
+  --green-light: #ECFDF5;
+  --green-dark: #047857;
+  --accent: #F59E0B;
+  --accent-light: #FFFBEB;
+  --purple: #8B5CF6;
+  --purple-light: #F5F3FF;
+  --red: #EF4444;
+  --red-light: #FEF2F2;
   --dark: #1a1a1a;
-  --gray-900: #212529;
-  --gray-700: #495057;
-  --gray-500: #6c757d;
-  --gray-300: #dee2e6;
-  --gray-100: #f8f9fa;
+  --gray-900: #111827;
+  --gray-700: #374151;
+  --gray-600: #4B5563;
+  --gray-500: #6B7280;
+  --gray-400: #9CA3AF;
+  --gray-300: #D1D5DB;
+  --gray-200: #E5E7EB;
+  --gray-100: #F3F4F6;
   --white: #ffffff;
   --shadow: 0 4px 24px rgba(0,0,0,0.08);
   --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+/* ── 온맘마켓 컨셉 탭: CSS 변수 오버라이드 ── */
+.concept-section {
+  --primary: #1A6840;
+  --primary-light: #EAF7F0;
+  --primary-dark: #0F4D2E;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,116 +51,99 @@ body {
   line-height: 1.6;
 }
 
+/* ── Top Tab Bar ── */
+.top-tabs {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 200;
+  gap: 8px;
+}
+.top-tab {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.6);
+  border: none;
+  background: transparent;
+}
+.top-tab:hover { color: white; background: rgba(255,255,255,0.1); }
+.top-tab.active { background: var(--primary); color: white; }
+.top-tab.active.green { background: #1A6840; }
+
+/* ── App Layout ── */
 .app {
   display: flex;
   min-height: 100vh;
+  padding-top: 56px;
 }
 
-/* Sidebar */
+/* ── Sidebar ── */
 .sidebar {
-  width: 280px;
-  background: var(--dark);
+  width: 260px;
+  background: var(--gray-900);
   color: var(--white);
-  padding: 32px 0;
+  padding: 24px 0;
   position: fixed;
-  height: 100vh;
+  left: 0; top: 56px;
+  height: calc(100vh - 56px);
   overflow-y: auto;
   z-index: 100;
 }
-
 .sidebar-header {
-  padding: 0 24px 32px;
+  padding: 0 20px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-
-.logo {
-  font-size: 24px;
-  font-weight: 800;
-  color: #4ADE80;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  font-size: 13px;
-  color: rgba(255,255,255,0.6);
-  font-weight: 500;
-}
-
-.nav-section {
-  padding: 0 16px;
-}
-
+.logo { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.subtitle { font-size: 12px; opacity: 0.5; }
+.nav-section { padding: 0 12px; }
 .nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 10px;
+  cursor: pointer; transition: all 0.2s;
+  margin-bottom: 2px; font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.6);
 }
-
-.nav-item:hover {
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-}
-
-.nav-item.active {
-  background: var(--primary);
-  color: var(--white);
-}
-
+.nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+.nav-item.active { background: var(--primary); color: white; }
+.nav-item.active.green { background: #1A6840; }
 .nav-item .num {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
+  font-size: 10px; font-weight: 700;
   background: rgba(255,255,255,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
+  padding: 3px 7px; border-radius: 5px;
 }
 
-.nav-item.active .num {
-  background: rgba(255,255,255,0.25);
-}
-
-/* Main Content */
+/* ── Main Content ── */
 .main {
+  margin-left: 260px;
+  margin-right: 300px;
+  padding: 32px 40px;
   flex: 1;
-  margin-left: 280px;
-  padding: 40px 48px;
-  max-width: 1200px;
+  min-height: calc(100vh - 56px);
 }
+.section { max-width: 960px; margin: 0 auto; }
+.section-header { margin-bottom: 32px; }
 
-.section {
-  display: none;
-  animation: fadeIn 0.4s ease;
-}
-
-.section.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.section-header {
-  margin-bottom: 40px;
-}
-
+/* Platform section-num (text style) */
 .section-num {
+  font-size: 13px; font-weight: 700;
+  color: var(--primary); margin-bottom: 6px;
+}
+.section-num.green { color: var(--green); }
+
+/* Concept section-num (pill badge via .concept-section scope) */
+.concept-section .section-num {
   display: inline-block;
   background: var(--primary);
-  color: var(--white);
+  color: white;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 13px;
@@ -153,945 +151,309 @@ body {
   margin-bottom: 16px;
 }
 
-.section-title {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--gray-900);
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
+.section-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.section-desc { font-size: 15px; color: var(--gray-500); }
 
-.section-desc {
-  font-size: 16px;
-  color: var(--gray-500);
-  max-width: 600px;
-}
-
-/* Cards */
+/* ── Cards ── */
 .card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: var(--shadow);
-  margin-bottom: 24px;
+  background: white; border-radius: 14px;
+  padding: 24px; box-shadow: var(--shadow);
+  margin-bottom: 20px;
 }
-
 .card-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.card-title .icon {
-  font-size: 22px;
-}
-
-/* Grid Layouts */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-/* Competitor Cards */
-.competitor-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: var(--shadow);
-  border: 2px solid transparent;
-  transition: all 0.2s;
-}
-
-.competitor-card.highlight {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-
-.competitor-rank {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
-
-.competitor-name {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.competitor-stat {
-  font-size: 13px;
-  color: var(--gray-500);
-  margin-bottom: 4px;
-}
-
-.competitor-stat strong {
-  color: var(--gray-900);
-}
-
-/* Stats */
-.stat-box {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: var(--white);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 13px;
-  opacity: 0.85;
-  font-weight: 600;
-}
-
-/* Comparison Table */
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.compare-table th, .compare-table td {
-  padding: 16px 20px;
-  text-align: left;
-  border-bottom: 1px solid var(--gray-300);
-}
-
-.compare-table th {
-  background: var(--gray-100);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--gray-700);
-}
-
-.compare-table td {
-  font-size: 14px;
-}
-
-.compare-table .highlight-col {
-  background: var(--primary-light);
-}
-
-.compare-table .highlight-col strong {
-  color: var(--primary);
-}
-
-/* Flow Diagram */
-.flow-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 24px 0;
-}
-
-.flow-step {
-  background: var(--white);
-  border: 2px solid var(--gray-300);
-  border-radius: 12px;
-  padding: 16px 20px;
-  text-align: center;
-  min-width: 140px;
-  transition: all 0.2s;
-}
-
-.flow-step.primary {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-
-.flow-step.accent {
-  border-color: var(--accent);
-  background: var(--accent-light);
-}
-
-.flow-step-icon {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-.flow-step-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--gray-900);
-}
-
-.flow-step-desc {
-  font-size: 12px;
-  color: var(--gray-500);
-  margin-top: 4px;
-}
-
-.flow-arrow {
-  font-size: 24px;
-  color: var(--gray-400);
-  font-weight: 300;
-}
-
-/* Feature List */
-.feature-group {
-  margin-bottom: 32px;
-}
-
-.feature-group-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 16px; font-weight: 700;
   margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--primary-light);
+  display: flex; align-items: center; gap: 8px;
 }
+.card-title .icon { font-size: 20px; }
 
-.feature-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--gray-100);
-}
+/* ── Grids ── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 
-.feature-check {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
+/* ── Tags ── */
+.tag { display: inline-block; padding: 5px 10px; border-radius: 16px; font-size: 11px; font-weight: 600; }
+.tag-primary { background: var(--primary-light); color: var(--primary); }
+.tag-green { background: var(--green-light); color: var(--green-dark); }
+.tag-accent { background: var(--accent-light); color: #B45309; }
+.tag-purple { background: var(--purple-light); color: var(--purple); }
+.tag-red { background: var(--red-light); color: var(--red); }
+.tag-gray { background: var(--gray-100); color: var(--gray-700); }
 
-.feature-check.optional {
-  background: var(--gray-300);
-  color: var(--gray-700);
-}
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--gray-200); }
+th { background: var(--gray-100); font-weight: 700; color: var(--gray-700); }
 
-.feature-text {
-  flex: 1;
-}
-
-.feature-name {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--gray-900);
-}
-
-.feature-desc {
-  font-size: 13px;
-  color: var(--gray-500);
-  margin-top: 2px;
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 32px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 11px;
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: var(--gray-300);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 32px;
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -32px;
-  top: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--primary);
-  border: 4px solid var(--white);
-  box-shadow: 0 0 0 2px var(--primary);
-}
-
-.timeline-item.future .timeline-dot {
-  background: var(--gray-300);
-  box-shadow: 0 0 0 2px var(--gray-300);
-}
-
-.timeline-phase {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
-
-.timeline-item.future .timeline-phase {
-  color: var(--gray-500);
-}
-
-.timeline-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 8px;
-}
-
-.timeline-content {
-  font-size: 14px;
-  color: var(--gray-600);
-}
-
-/* Discussion Points */
-.discussion-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-  border-left: 4px solid var(--accent);
-}
-
-.discussion-question {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 16px;
-}
-
-.discussion-options {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.discussion-option {
-  background: var(--gray-100);
-  border: 2px solid var(--gray-300);
-  border-radius: 10px;
-  padding: 14px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gray-700);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.discussion-option:hover {
-  border-color: var(--primary);
-  background: var(--primary-light);
-  color: var(--primary);
-}
-
-.discussion-note {
-  background: var(--gray-100);
-  border-radius: 10px;
-  padding: 16px;
-  font-size: 13px;
-  color: var(--gray-600);
-  margin-top: 16px;
-}
-
-/* NEW: System Architecture - Fixed Layout */
-.system-arch {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 32px;
-  align-items: start;
-  padding: 32px;
-}
-
-.system-block {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.system-box {
-  background: var(--white);
-  border: 2px solid var(--gray-300);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-}
-
-.system-box.consumer {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-
-.system-box.business {
-  border-color: var(--purple);
-  background: var(--purple-light);
-}
-
-.system-box.backend {
-  border-color: var(--gray-500);
-  background: var(--gray-100);
-}
-
-.system-box-icon {
-  font-size: 36px;
-  margin-bottom: 8px;
-}
-
-.system-box-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.system-box-desc {
-  font-size: 13px;
-  color: var(--gray-500);
-}
-
-.system-features {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.system-feature {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.system-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding-top: 40px;
-}
-
-.system-arrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gray-400);
-  font-size: 14px;
-}
-
-.system-arrow-line {
-  width: 40px;
-  height: 2px;
-  background: var(--gray-300);
-}
-
-/* Tag */
-.tag {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.tag-primary {
-  background: var(--primary-light);
-  color: var(--primary);
-}
-
-.tag-accent {
-  background: var(--accent-light);
-  color: var(--accent);
-}
-
-.tag-gray {
-  background: var(--gray-100);
-  color: var(--gray-600);
-}
-
-/* Alert Box */
-.alert {
-  background: #FEF3C7;
-  border: 1px solid #F59E0B;
-  border-radius: 12px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.alert-icon {
-  font-size: 20px;
-}
-
-.alert-content {
-  flex: 1;
-}
-
-.alert-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #92400E;
-  margin-bottom: 4px;
-}
-
-.alert-text {
-  font-size: 13px;
-  color: #A16207;
-}
-
-/* BM Model */
-.bm-row {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
-.bm-box {
-  flex: 1;
-  background: var(--white);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: var(--shadow);
-}
-
-.bm-box-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--gray-500);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-}
-
-.bm-box-content {
-  font-size: 15px;
-  color: var(--gray-900);
-  line-height: 1.7;
-}
-
-.bm-price {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--primary);
-}
-
-.bm-price-unit {
-  font-size: 14px;
-  color: var(--gray-500);
-  font-weight: 500;
-}
-
-/* Cost Table */
-.cost-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-}
-
-.cost-table th, .cost-table td {
-  padding: 14px 16px;
-  text-align: left;
-  border-bottom: 1px solid var(--gray-200);
-  font-size: 14px;
-}
-
-.cost-table th {
-  background: var(--gray-100);
-  font-weight: 700;
-  color: var(--gray-700);
-}
-
-.cost-table .cost-range {
-  font-weight: 700;
-  color: var(--primary);
-}
-
-/* KPI Card */
+/* ── KPI Cards (platform) ── */
 .kpi-card {
-  background: linear-gradient(135deg, var(--white) 0%, var(--gray-100) 100%);
+  background: var(--gray-100);
+  padding: 18px; border-radius: 12px; text-align: center;
+}
+.kpi-value { font-size: 26px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+.kpi-label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+.kpi-note { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
+
+/* ── KPI Cards (concept override) ── */
+.concept-section .kpi-card {
+  background: linear-gradient(135deg, white 0%, var(--gray-100) 100%);
   border: 2px solid var(--gray-200);
   border-radius: 16px;
   padding: 24px;
   text-align: center;
 }
+.concept-section .kpi-value { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+.concept-section .kpi-label { font-size: 14px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+.concept-section .kpi-note { font-size: 12px; color: var(--gray-500); }
 
-.kpi-value {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 4px;
+/* ── Highlight Box ── */
+.highlight-box {
+  background: linear-gradient(135deg, var(--primary-light) 0%, #DBEAFE 100%);
+  border-radius: 14px; padding: 24px; margin-bottom: 20px;
+}
+.highlight-box.green {
+  background: linear-gradient(135deg, var(--green-light) 0%, #D1FAE5 100%);
+}
+/* concept highlight box */
+.concept-section .highlight-box {
+  background: linear-gradient(135deg, var(--primary-light) 0%, #D1FAE5 100%);
+  border-radius: 16px; padding: 24px;
+  border: 2px solid var(--primary);
 }
 
-.kpi-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gray-700);
-  margin-bottom: 8px;
+/* ── Alert ── */
+.alert {
+  display: flex; gap: 12px; padding: 14px 18px;
+  border-radius: 10px; margin-bottom: 20px;
+}
+.alert-icon { font-size: 18px; }
+.alert-primary { background: var(--primary-light); border: 1px solid var(--primary); }
+.alert-accent { background: var(--accent-light); border: 1px solid var(--accent); }
+.alert-title { font-weight: 700; margin-bottom: 2px; font-size: 14px; }
+.alert-text { font-size: 13px; color: var(--gray-700); }
+.alert-content { flex: 1; }
+
+/* ── Phase Cards ── */
+.phase-card { background: white; border-radius: 14px; padding: 20px; box-shadow: var(--shadow); border-top: 4px solid var(--gray-300); }
+.phase-card.phase-1 { border-top-color: var(--primary); }
+.phase-card.phase-2 { border-top-color: var(--purple); }
+.phase-card.phase-3 { border-top-color: var(--accent); }
+
+/* ── Timeline (platform style) ── */
+.timeline { display: flex; justify-content: space-between; position: relative; margin: 28px 0; }
+.timeline::before { content: ''; position: absolute; top: 18px; left: 0; right: 0; height: 3px; background: var(--gray-200); }
+.timeline-item { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+.timeline-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: white; border: 3px solid var(--gray-300);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; margin-bottom: 10px;
+}
+.timeline-item.active .timeline-dot { border-color: var(--primary); background: var(--primary); color: white; }
+.timeline-label { font-size: 12px; font-weight: 600; }
+.timeline-period { font-size: 10px; color: var(--gray-500); margin-top: 2px; }
+
+/* ── Timeline (concept / vertical style) ── */
+.concept-section .timeline { display: block; position: relative; padding-left: 32px; margin: 0; }
+.concept-section .timeline::before {
+  content: ''; position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--gray-300);
+  height: auto;
+}
+.concept-section .timeline-item { display: block; position: relative; padding-bottom: 32px; align-items: initial; }
+.concept-section .timeline-item:last-child { padding-bottom: 0; }
+.concept-section .timeline-dot {
+  position: absolute; left: -32px; top: 4px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--primary); border: 4px solid white;
+  box-shadow: 0 0 0 2px var(--primary);
+  margin-bottom: 0; font-size: 0;
+}
+.concept-section .timeline-item.future .timeline-dot { background: var(--gray-300); box-shadow: 0 0 0 2px var(--gray-300); }
+.timeline-phase { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.concept-section .timeline-item.future .timeline-phase { color: var(--gray-500); }
+.timeline-title { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+.timeline-content { font-size: 14px; color: var(--gray-600); }
+
+/* ── Nav Buttons ── */
+.nav-buttons {
+  display: flex; justify-content: space-between;
+  margin-top: 40px; padding-top: 24px;
+  border-top: 1px solid var(--gray-200);
+}
+.nav-btn { padding: 12px 24px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+.nav-btn-prev { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.nav-btn-next { background: var(--primary); color: white; }
+.nav-btn-next.green { background: #1A6840; }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Memo Panel ── */
+.memo-panel {
+  width: 300px; background: white;
+  border-left: 1px solid var(--gray-300);
+  position: fixed; right: 0; top: 56px;
+  height: calc(100vh - 56px);
+  display: flex; flex-direction: column; z-index: 100;
+}
+.memo-header { padding: 16px; border-bottom: 1px solid var(--gray-300); background: var(--gray-100); }
+.memo-header-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.memo-header-desc { font-size: 11px; color: var(--gray-500); }
+.memo-content { flex: 1; overflow-y: auto; padding: 14px; }
+.memo-textarea {
+  width: 100%; height: 100%; min-height: 280px;
+  border: 1px solid var(--gray-300); border-radius: 8px;
+  padding: 12px; font-family: inherit; font-size: 13px;
+  line-height: 1.6; resize: none; outline: none;
+}
+.memo-textarea:focus { border-color: var(--primary); }
+.memo-footer { padding: 14px; border-top: 1px solid var(--gray-300); background: var(--gray-100); }
+.memo-btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 6px; }
+.memo-btn-primary { background: var(--primary); color: white; }
+.memo-btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.memo-saved { font-size: 10px; color: var(--gray-500); text-align: center; margin-top: 4px; }
+.memo-toast {
+  position: fixed; bottom: 20px; right: 320px;
+  background: var(--gray-900); color: white;
+  padding: 10px 18px; border-radius: 8px; font-size: 13px;
+  animation: fadeInOut 2s ease-in-out; z-index: 300;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.kpi-note {
-  font-size: 12px;
-  color: var(--gray-500);
-}
+/* ── Cost / Platform specific ── */
+.cost-highlight { background: var(--primary-light); }
+.cost-total { font-size: 16px; font-weight: 800; color: var(--primary); }
 
-/* Risk Item */
-.risk-item {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  background: var(--white);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  border-left: 4px solid #EF4444;
-}
-
-.risk-item.mitigated {
-  border-left-color: var(--primary);
-}
-
-.risk-icon {
-  font-size: 24px;
-}
-
-.risk-content {
-  flex: 1;
-}
-
-.risk-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--gray-900);
-  margin-bottom: 4px;
-}
-
-.risk-desc {
-  font-size: 13px;
-  color: var(--gray-600);
-  margin-bottom: 8px;
-}
-
-.risk-mitigation {
-  background: var(--primary-light);
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--primary-dark);
-}
-
-/* Utility */
+/* ── Utility ── */
 .mb-8 { margin-bottom: 8px; }
 .mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
 .mb-24 { margin-bottom: 24px; }
 .mb-32 { margin-bottom: 32px; }
 .mb-40 { margin-bottom: 40px; }
-
 .text-center { text-align: center; }
 .text-primary { color: var(--primary); }
 .text-accent { color: var(--accent); }
 .text-gray { color: var(--gray-500); }
-
 .font-bold { font-weight: 700; }
-.font-medium { font-weight: 500; }
 
-/* Navigation buttons */
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid var(--gray-300);
-}
+/* ────────────────────────────────────────
+   온맘마켓 컨셉 전용 CSS 클래스들
+   ──────────────────────────────────────── */
 
-.nav-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
+/* Competitor Cards */
+.competitor-card {
+  background: white; border-radius: 16px; padding: 24px;
+  box-shadow: var(--shadow); border: 2px solid transparent;
   transition: all 0.2s;
-  border: none;
 }
+.competitor-card.highlight { border-color: var(--primary); background: var(--primary-light); }
+.competitor-rank { font-size: 28px; margin-bottom: 12px; }
+.competitor-name { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.competitor-stat { font-size: 13px; color: var(--gray-500); margin-bottom: 4px; }
+.competitor-stat strong { color: var(--gray-900); }
 
-.nav-btn-prev {
-  background: var(--gray-100);
-  color: var(--gray-700);
+/* Stat Box */
+.stat-box {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white; border-radius: 16px; padding: 24px; text-align: center;
 }
+.stat-value { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+.stat-label { font-size: 13px; opacity: 0.85; font-weight: 600; }
 
-.nav-btn-prev:hover {
-  background: var(--gray-200);
+/* Compare Table */
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--gray-300); }
+.compare-table th { background: var(--gray-100); font-weight: 700; font-size: 14px; color: var(--gray-700); }
+.compare-table td { font-size: 14px; }
+.compare-table .highlight-col { background: var(--primary-light); }
+.compare-table .highlight-col strong { color: var(--primary); }
+
+/* Flow */
+.flow-container { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; padding: 24px 0; }
+.flow-step {
+  background: white; border: 2px solid var(--gray-300); border-radius: 12px;
+  padding: 16px 20px; text-align: center; min-width: 140px; transition: all 0.2s;
 }
+.flow-step.primary { border-color: var(--primary); background: var(--primary-light); }
+.flow-step.accent { border-color: var(--accent); background: var(--accent-light); }
+.flow-step-icon { font-size: 28px; margin-bottom: 8px; }
+.flow-step-title { font-size: 14px; font-weight: 700; color: var(--gray-900); }
+.flow-step-desc { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+.flow-arrow { font-size: 24px; color: var(--gray-400); font-weight: 300; }
 
-.nav-btn-next {
-  background: var(--primary);
-  color: var(--white);
-}
+/* Feature List */
+.feature-group { margin-bottom: 32px; }
+.feature-group-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--primary-light); }
+.feature-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+.feature-check { width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.feature-check.optional { background: var(--gray-300); color: var(--gray-700); }
+.feature-text { flex: 1; }
+.feature-name { font-weight: 600; font-size: 14px; color: var(--gray-900); }
+.feature-desc { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
 
-.nav-btn-next:hover {
-  background: var(--primary-dark);
-}
+/* System Architecture */
+.system-arch { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: start; padding: 32px; }
+.system-block { display: flex; flex-direction: column; gap: 12px; }
+.system-box { background: white; border: 2px solid var(--gray-300); border-radius: 16px; padding: 24px; text-align: center; }
+.system-box.consumer { border-color: var(--primary); background: var(--primary-light); }
+.system-box.business { border-color: var(--purple); background: var(--purple-light); }
+.system-box.backend { border-color: var(--gray-500); background: var(--gray-100); }
+.system-box-icon { font-size: 36px; margin-bottom: 8px; }
+.system-box-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.system-box-desc { font-size: 13px; color: var(--gray-500); }
+.system-features { display: flex; flex-direction: column; gap: 8px; }
+.system-feature { background: white; border: 1px solid var(--gray-200); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 500; text-align: center; }
+.system-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding-top: 40px; }
+.system-arrow { display: flex; align-items: center; gap: 8px; color: var(--gray-400); font-size: 14px; }
+.system-arrow-line { width: 40px; height: 2px; background: var(--gray-300); }
 
-.nav-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
+/* Pain / Solution Points */
+.pain-point { background: #FEE2E2; border-left: 4px solid #EF4444; padding: 16px 20px; border-radius: 0 12px 12px 0; margin-bottom: 12px; }
+.pain-point-text { font-size: 14px; color: #991B1B; }
+.solution-point { background: #D1FAE5; border-left: 4px solid var(--primary); padding: 16px 20px; border-radius: 0 12px 12px 0; margin-bottom: 12px; }
+.solution-point-text { font-size: 14px; color: var(--primary-dark); }
 
-/* Highlight */
-.highlight-box {
-  background: linear-gradient(135deg, var(--primary-light) 0%, #D1FAE5 100%);
-  border-radius: 16px;
-  padding: 24px;
-  border: 2px solid var(--primary);
-}
+/* BM Model */
+.bm-row { display: flex; gap: 24px; margin-bottom: 24px; }
+.bm-box { flex: 1; background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+.bm-box-title { font-size: 14px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.bm-box-content { font-size: 15px; color: var(--gray-900); line-height: 1.7; }
+.bm-price { font-size: 28px; font-weight: 800; color: var(--primary); }
+.bm-price-unit { font-size: 14px; color: var(--gray-500); font-weight: 500; }
 
-.pain-point {
-  background: #FEE2E2;
-  border-left: 4px solid #EF4444;
-  padding: 16px 20px;
-  border-radius: 0 12px 12px 0;
-  margin-bottom: 12px;
-}
+/* Cost Table */
+.cost-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.cost-table th, .cost-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
+.cost-table th { background: var(--gray-100); font-weight: 700; color: var(--gray-700); }
+.cost-table .cost-range { font-weight: 700; color: var(--primary); }
 
-.pain-point-text {
-  font-size: 14px;
-  color: #991B1B;
-}
+/* Risk Items */
+.risk-item { display: flex; gap: 16px; padding: 20px; background: white; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #EF4444; }
+.risk-item.mitigated { border-left-color: var(--primary); }
+.risk-icon { font-size: 24px; }
+.risk-content { flex: 1; }
+.risk-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+.risk-desc { font-size: 13px; color: var(--gray-600); margin-bottom: 8px; }
+.risk-mitigation { background: var(--primary-light); padding: 10px 14px; border-radius: 8px; font-size: 13px; color: var(--primary-dark); }
 
-.solution-point {
-  background: #D1FAE5;
-  border-left: 4px solid var(--primary);
-  padding: 16px 20px;
-  border-radius: 0 12px 12px 0;
-  margin-bottom: 12px;
-}
+/* Discussion Cards */
+.discussion-card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow); border-left: 4px solid var(--accent); }
+.discussion-question { font-size: 18px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; }
+.discussion-options { display: flex; gap: 12px; flex-wrap: wrap; }
+.discussion-option { background: var(--gray-100); border: 2px solid var(--gray-300); border-radius: 10px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--gray-700); cursor: pointer; transition: all 0.2s; }
+.discussion-option:hover { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+.discussion-note { background: var(--gray-100); border-radius: 10px; padding: 16px; font-size: 13px; color: var(--gray-600); margin-top: 16px; }
 
-.solution-point-text {
-  font-size: 14px;
-  color: var(--primary-dark);
-}
-
-/* 메모 패널 */
-.memo-panel {
-  width: 320px;
-  background: var(--white);
-  border-left: 1px solid var(--gray-300);
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-shadow: -4px 0 24px rgba(0,0,0,0.05);
-  z-index: 100;
-}
-
-.memo-header {
-  padding: 20px;
-  border-bottom: 1px solid var(--gray-300);
-  background: var(--gray-100);
-}
-
-.memo-header-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.memo-header-desc {
-  font-size: 12px;
-  color: var(--gray-500);
-}
-
-.memo-section-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--primary);
-  padding: 12px 20px;
-  background: var(--primary-light);
-  border-bottom: 1px solid var(--gray-300);
-}
-
-.memo-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-}
-
-.memo-textarea {
-  width: 100%;
-  height: 100%;
-  min-height: 300px;
-  border: 1px solid var(--gray-300);
-  border-radius: 8px;
-  padding: 12px;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.6;
-  resize: none;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.memo-textarea:focus {
-  border-color: var(--primary);
-}
-
-.memo-textarea::placeholder {
-  color: var(--gray-500);
-}
-
-.memo-footer {
-  padding: 16px;
-  border-top: 1px solid var(--gray-300);
-  background: var(--gray-100);
-}
-
-.memo-btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.memo-btn-primary {
-  background: var(--primary);
-  color: white;
-  margin-bottom: 8px;
-}
-
-.memo-btn-primary:hover {
-  background: var(--primary-dark);
-}
-
-.memo-btn-secondary {
-  background: white;
-  color: var(--gray-700);
-  border: 1px solid var(--gray-300);
-}
-
-.memo-btn-secondary:hover {
-  background: var(--gray-100);
-}
-
-.memo-saved {
-  font-size: 11px;
-  color: var(--gray-500);
-  text-align: center;
-  margin-top: 8px;
-}
-
-.memo-toast {
-  position: fixed;
-  bottom: 24px;
-  right: 340px;
-  background: var(--gray-900);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  animation: fadeInOut 2s ease-in-out;
-  z-index: 200;
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(10px); }
-  15% { opacity: 1; transform: translateY(0); }
-  85% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-10px); }
-}
-
-/* 메인 영역 조정 */
-.main {
-  margin-left: 280px;
-  margin-right: 320px;
-  padding: 48px;
-  flex: 1;
-}
-
-.memo-toggle {
-  position: fixed;
-  right: 320px;
-  top: 20px;
-  z-index: 101;
-  background: var(--primary);
-  color: white;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  box-shadow: var(--shadow);
-  display: none;
-}
-
-@media (max-width: 1400px) {
-  .memo-panel {
-    transform: translateX(100%);
-    transition: transform 0.3s;
-  }
-  .memo-panel.open {
-    transform: translateX(0);
-  }
-  .main {
-    margin-right: 0;
-  }
-  .memo-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 20px;
-  }
-  .memo-toggle.open {
-    right: 340px;
-  }
+@media (max-width: 1200px) {
+  .memo-panel { display: none; }
+  .main { margin-right: 0; }
 }
 </style>
 </head>
@@ -1100,23 +462,43 @@ body {
 <script type="text/babel">
 const { useState, useEffect, useRef } = React;
 
-const SECTIONS = [
-  { id: 'market', num: '01', title: '시장 현황 및 기회', icon: '📊' },
-  { id: 'positioning', num: '02', title: '온맘마켓 포지셔닝', icon: '🎯' },
-  { id: 'platform', num: '03', title: '플랫폼 구조', icon: '🏗️' },
-  { id: 'flow', num: '04', title: '핵심 사용자 플로우', icon: '🔄' },
-  { id: 'mvp', num: '05', title: 'MVP 기능 범위', icon: '📱' },
-  { id: 'cost', num: '06', title: '예상 비용 및 일정', icon: '💰' },
-  { id: 'kpi', num: '07', title: '성공 지표 (KPI)', icon: '📈' },
-  { id: 'risk', num: '08', title: '리스크 및 차별화', icon: '⚠️' },
-  { id: 'gtm', num: '09', title: 'Go-to-Market 전략', icon: '🚀' },
-  { id: 'discussion', num: '10', title: '논의 필요 사항', icon: '💬' },
-  { id: 'openquestions', num: '11', title: '함께 고민해야 할 것들', icon: '🤔' },
+// =====================
+// TAB 1: 온맘마켓 컨셉 (v2 전체 내용)
+// =====================
+const SECTIONS_CONCEPT = [
+  { id: 'market',        num: '01', title: '시장 현황 및 기회' },
+  { id: 'positioning',   num: '02', title: '온맘마켓 포지셔닝' },
+  { id: 'platform',      num: '03', title: '플랫폼 구조' },
+  { id: 'flow',          num: '04', title: '핵심 사용자 플로우' },
+  { id: 'mvp',           num: '05', title: 'MVP 기능 범위' },
+  { id: 'cost',          num: '06', title: '예상 비용 및 일정' },
+  { id: 'kpi',           num: '07', title: '성공 지표 (KPI)' },
+  { id: 'risk',          num: '08', title: '리스크 및 차별화' },
+  { id: 'gtm',           num: '09', title: 'Go-to-Market 전략' },
+  { id: 'discussion',    num: '10', title: '논의 필요 사항' },
+  { id: 'openquestions', num: '11', title: '함께 고민해야 할 것들' },
 ];
 
-function Section1_Market() {
+// =====================
+// TAB 2: 공구플랫폼 사업 기획
+// =====================
+const SECTIONS_PLATFORM = [
+  { id: 'p_market',    num: '01', title: '시장 현황' },
+  { id: 'p_vision',    num: '02', title: '플랫폼 비전' },
+  { id: 'p_roadmap',   num: '03', title: 'Phase별 로드맵' },
+  { id: 'p_cost',      num: '04', title: '기능별 비용' },
+  { id: 'p_webvsapp',  num: '05', title: '웹 vs 앱' },
+  { id: 'p_schedule',  num: '06', title: '일정/운영비' },
+  { id: 'p_kpi',       num: '07', title: 'KPI' },
+  { id: 'p_risk',      num: '08', title: '리스크' },
+];
+
+// =====================
+// 온맘마켓 컨셉 섹션 컴포넌트 (v2 전체 내용)
+// =====================
+function Concept_Market() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">01</div>
         <h1 className="section-title">시장 현황 및 기회</h1>
@@ -1161,26 +543,14 @@ function Section1_Market() {
       <div className="card mb-40">
         <div className="grid-2">
           <div>
-            <div className="pain-point">
-              <div className="pain-point-text">📱 모두 <strong>카톡 오픈채팅</strong>에 의존 → API 연동 불가</div>
-            </div>
-            <div className="pain-point">
-              <div className="pain-point-text">📝 <strong>수동 집계</strong> → "전번 + 상품 + 수량" 수기 입력</div>
-            </div>
-            <div className="pain-point">
-              <div className="pain-point-text">😫 <strong>채팅 피로</strong> → 단톡방 알림 과다</div>
-            </div>
+            <div className="pain-point"><div className="pain-point-text">📱 모두 <strong>카톡 오픈채팅</strong>에 의존 → API 연동 불가</div></div>
+            <div className="pain-point"><div className="pain-point-text">📝 <strong>수동 집계</strong> → "전번 + 상품 + 수량" 수기 입력</div></div>
+            <div className="pain-point"><div className="pain-point-text">😫 <strong>채팅 피로</strong> → 단톡방 알림 과다</div></div>
           </div>
           <div>
-            <div className="pain-point">
-              <div className="pain-point-text">🚫 <strong>노쇼 관리 어려움</strong> → 픽업일 관리 혼란</div>
-            </div>
-            <div className="pain-point">
-              <div className="pain-point-text">📊 <strong>데이터 분석 불가</strong> → 엑셀 수기 관리</div>
-            </div>
-            <div className="pain-point">
-              <div className="pain-point-text">🔍 <strong>신규 고객 유입 어려움</strong> → 단톡방 초대 필요</div>
-            </div>
+            <div className="pain-point"><div className="pain-point-text">🚫 <strong>노쇼 관리 어려움</strong> → 픽업일 관리 혼란</div></div>
+            <div className="pain-point"><div className="pain-point-text">📊 <strong>데이터 분석 불가</strong> → 엑셀 수기 관리</div></div>
+            <div className="pain-point"><div className="pain-point-text">🔍 <strong>신규 고객 유입 어려움</strong> → 단톡방 초대 필요</div></div>
           </div>
         </div>
       </div>
@@ -1204,24 +574,45 @@ function Section1_Market() {
           <div className="stat-label">선점 기회<br/>타이밍</div>
         </div>
       </div>
+
+      <div className="highlight-box" style={{marginTop: 32}}>
+        <h4 style={{fontSize: 18, fontWeight: 700, marginBottom: 12}}>🌟 온맘마켓의 강점</h4>
+        <div className="grid-3">
+          <div style={{textAlign: 'center'}}>
+            <div style={{fontSize: 32, marginBottom: 8}}>🏪</div>
+            <div style={{fontWeight: 700, marginBottom: 4}}>직영 6개점 노하우</div>
+            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>실제 운영 경험 기반 기능 설계</div>
+          </div>
+          <div style={{textAlign: 'center'}}>
+            <div style={{fontSize: 32, marginBottom: 8}}>📈</div>
+            <div style={{fontWeight: 700, marginBottom: 4}}>검증된 성장 방식</div>
+            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>다른 매장들이 배우고 싶어하는 노하우</div>
+          </div>
+          <div style={{textAlign: 'center'}}>
+            <div style={{fontSize: 32, marginBottom: 8}}>🔧</div>
+            <div style={{fontWeight: 700, marginBottom: 4}}>현장 중심 솔루션</div>
+            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>이론이 아닌 실전에서 필요한 기능</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Section2_Positioning() {
+function Concept_Positioning() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">02</div>
         <h1 className="section-title">온맘마켓 포지셔닝</h1>
         <p className="section-desc">직영 6개점 운영 노하우를 기반으로 소규모 공동구매 매장을 위한 플랫폼으로 확장합니다.</p>
       </div>
 
-      <div className="alert mb-32">
+      <div className="alert mb-32" style={{background: '#FEF3C7', border: '1px solid #F59E0B'}}>
         <div className="alert-icon">💡</div>
         <div className="alert-content">
-          <div className="alert-title">플랫폼 시작 배경</div>
-          <div className="alert-text">
+          <div className="alert-title" style={{color: '#92400E'}}>플랫폼 시작 배경</div>
+          <div className="alert-text" style={{color: '#A16207'}}>
             온맘마켓이 신생 브랜드임에도 빠르게 성장하면서, 소규모 공구 매장들이 "어떻게 성장했는지", "고객 홍보는 어떻게 하는지" 문의가 많아졌습니다. 이 노하우를 솔루션화하여 플랫폼으로 제공하려 합니다.
           </div>
         </div>
@@ -1291,34 +682,13 @@ function Section2_Positioning() {
           </tbody>
         </table>
       </div>
-
-      <div className="highlight-box" style={{marginTop: 32}}>
-        <h4 style={{fontSize: 18, fontWeight: 700, marginBottom: 12}}>🌟 온맘마켓의 강점</h4>
-        <div className="grid-3">
-          <div style={{textAlign: 'center'}}>
-            <div style={{fontSize: 32, marginBottom: 8}}>🏪</div>
-            <div style={{fontWeight: 700, marginBottom: 4}}>직영 6개점 노하우</div>
-            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>실제 운영 경험 기반 기능 설계</div>
-          </div>
-          <div style={{textAlign: 'center'}}>
-            <div style={{fontSize: 32, marginBottom: 8}}>📈</div>
-            <div style={{fontWeight: 700, marginBottom: 4}}>검증된 성장 방식</div>
-            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>다른 매장들이 배우고 싶어하는 노하우</div>
-          </div>
-          <div style={{textAlign: 'center'}}>
-            <div style={{fontSize: 32, marginBottom: 8}}>🔧</div>
-            <div style={{fontWeight: 700, marginBottom: 4}}>현장 중심 솔루션</div>
-            <div style={{fontSize: 13, color: 'var(--gray-600)'}}>이론이 아닌 실전에서 필요한 기능</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
 
-function Section3_Platform() {
+function Concept_Platform() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">03</div>
         <h1 className="section-title">플랫폼 구조</h1>
@@ -1328,7 +698,6 @@ function Section3_Platform() {
       <h3 className="mb-24" style={{fontSize: '20px', fontWeight: 700}}>🏗️ 시스템 구성도</h3>
       <div className="card mb-40">
         <div className="system-arch">
-          {/* 소비자 앱 */}
           <div className="system-block">
             <div className="system-box consumer">
               <div className="system-box-icon">📱</div>
@@ -1342,8 +711,6 @@ function Section3_Platform() {
               <div className="system-feature">예약 내역</div>
             </div>
           </div>
-
-          {/* 중앙 - 백엔드 */}
           <div className="system-center">
             <div className="system-arrow">
               <div className="system-arrow-line"></div>
@@ -1361,8 +728,6 @@ function Section3_Platform() {
               <div className="system-arrow-line"></div>
             </div>
           </div>
-
-          {/* 사장님 웹 */}
           <div className="system-block">
             <div className="system-box business">
               <div className="system-box-icon">🖥️</div>
@@ -1384,15 +749,9 @@ function Section3_Platform() {
         <div className="grid-2">
           <div>
             <h4 style={{fontSize: 16, fontWeight: 700, color: 'var(--primary)', marginBottom: 16}}>단톡방 역할 (유지)</h4>
-            <div className="solution-point">
-              <div className="solution-point-text">📢 <strong>상품 공지</strong> + 링크 공유</div>
-            </div>
-            <div className="solution-point">
-              <div className="solution-point-text">💬 <strong>소통/후기</strong> → 커뮤니티</div>
-            </div>
-            <div className="solution-point">
-              <div className="solution-point-text">🔥 <strong>FOMO 유발</strong> → 바람잡이 효과</div>
-            </div>
+            <div className="solution-point"><div className="solution-point-text">📢 <strong>상품 공지</strong> + 링크 공유</div></div>
+            <div className="solution-point"><div className="solution-point-text">💬 <strong>소통/후기</strong> → 커뮤니티</div></div>
+            <div className="solution-point"><div className="solution-point-text">🔥 <strong>FOMO 유발</strong> → 바람잡이 효과</div></div>
           </div>
           <div>
             <h4 style={{fontSize: 16, fontWeight: 700, color: 'var(--purple)', marginBottom: 16}}>앱/웹 역할 (신규)</h4>
@@ -1415,9 +774,9 @@ function Section3_Platform() {
   );
 }
 
-function Section4_Flow() {
+function Concept_Flow() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">04</div>
         <h1 className="section-title">핵심 사용자 플로우</h1>
@@ -1457,7 +816,6 @@ function Section4_Flow() {
             <div className="flow-step-desc">QR 스캔 → 결제</div>
           </div>
         </div>
-        
         <div style={{marginTop: 24, padding: 20, background: 'var(--primary-light)', borderRadius: 12}}>
           <h4 style={{fontSize: 14, fontWeight: 700, marginBottom: 12}}>📱 웹 → 앱 전환 유도 포인트</h4>
           <div className="grid-2" style={{gap: 16}}>
@@ -1531,9 +889,9 @@ function Section4_Flow() {
   );
 }
 
-function Section5_MVP() {
+function Concept_MVP() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">05</div>
         <h1 className="section-title">MVP 기능 범위</h1>
@@ -1543,7 +901,6 @@ function Section5_MVP() {
       <div className="grid-2 mb-40">
         <div className="card">
           <div className="card-title"><span className="icon">📱</span> 소비자 앱 (+ 웹)</div>
-          
           <div className="feature-group">
             <div className="feature-group-title">회원 및 탐색</div>
             <div className="feature-item">
@@ -1568,7 +925,6 @@ function Section5_MVP() {
               </div>
             </div>
           </div>
-
           <div className="feature-group">
             <div className="feature-group-title">예약 및 픽업</div>
             <div className="feature-item">
@@ -1593,7 +949,6 @@ function Section5_MVP() {
               </div>
             </div>
           </div>
-
           <div className="feature-group">
             <div className="feature-group-title" style={{color: 'var(--accent)'}}>🔗 필수 추가 (단톡방 연동)</div>
             <div className="feature-item">
@@ -1622,7 +977,6 @@ function Section5_MVP() {
 
         <div className="card">
           <div className="card-title"><span className="icon">🖥️</span> 사장님 웹 (반응형)</div>
-          
           <div className="feature-group">
             <div className="feature-group-title">매장 및 상품 관리</div>
             <div className="feature-item">
@@ -1647,7 +1001,6 @@ function Section5_MVP() {
               </div>
             </div>
           </div>
-
           <div className="feature-group">
             <div className="feature-group-title">예약 관리 및 통계</div>
             <div className="feature-item">
@@ -1672,7 +1025,6 @@ function Section5_MVP() {
               </div>
             </div>
           </div>
-
           <div className="feature-group">
             <div className="feature-group-title" style={{color: 'var(--accent)'}}>🔗 필수 추가 (홍보용)</div>
             <div className="feature-item">
@@ -1696,39 +1048,20 @@ function Section5_MVP() {
       <h3 className="mb-24" style={{fontSize: '20px', fontWeight: 700}}>🎯 MVP에서 빠지는 것 (Phase 2 이후)</h3>
       <div className="card">
         <div className="grid-3">
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>보상/포인트 시스템</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>픽업 완료 시 적립, 노쇼 차감</div>
-          </div>
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>리뷰 기능</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>상품/매장 리뷰 작성</div>
-          </div>
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>찜/관심 매장</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>자주 가는 매장 저장</div>
-          </div>
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>CRM 고객 관리</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>고객 세그먼트, 타겟 알림</div>
-          </div>
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>공지/이벤트 발송</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>사장님 → 고객 직접 알림</div>
-          </div>
-          <div style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
-            <div style={{fontWeight: 700, marginBottom: 8}}>고급 통계/분석</div>
-            <div style={{fontSize: 13, color: 'var(--gray-500)'}}>매출 예측, 트렌드 분석</div>
-          </div>
+          {['보상/포인트 시스템','리뷰 기능','찜/관심 매장','CRM 고객 관리','공지/이벤트 발송','고급 통계/분석'].map((item, i) => (
+            <div key={i} style={{padding: 16, background: 'var(--gray-100)', borderRadius: 12}}>
+              <div style={{fontWeight: 700, marginBottom: 8}}>{item}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function Section6_Cost() {
+function Concept_Cost() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">06</div>
         <h1 className="section-title">예상 비용 및 일정</h1>
@@ -1752,12 +1085,9 @@ function Section6_Cost() {
           <div style={{fontSize: 28, fontWeight: 800, color: 'var(--primary)', marginBottom: 4}}>6,300~6,800만</div>
           <div style={{fontSize: 13, color: 'var(--gray-500)', marginBottom: 16}}>예상 기간: 3.5개월</div>
           <div style={{fontSize: 13, padding: 12, background: 'var(--gray-100)', borderRadius: 8}}>
-            ✅ 중단 리스크 최소<br/>
-            ✅ 체계적 품질 관리<br/>
-            ✅ 사후 지원 보장
+            ✅ 중단 리스크 최소<br/>✅ 체계적 품질 관리<br/>✅ 사후 지원 보장
           </div>
         </div>
-
         <div className="card" style={{borderTop: '4px solid var(--primary)', transform: 'scale(1.02)', boxShadow: 'var(--shadow-lg)'}}>
           <div style={{fontSize: 12, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>TYPE B ⭐ 추천</div>
           <div style={{fontSize: 18, fontWeight: 700, marginBottom: 4}}>소규모 스튜디오</div>
@@ -1765,12 +1095,9 @@ function Section6_Cost() {
           <div style={{fontSize: 28, fontWeight: 800, color: 'var(--primary)', marginBottom: 4}}>4,300~4,800만</div>
           <div style={{fontSize: 13, color: 'var(--gray-500)', marginBottom: 16}}>예상 기간: 3.5개월</div>
           <div style={{fontSize: 13, padding: 12, background: 'var(--primary-light)', borderRadius: 8}}>
-            ✅ 가성비 우수<br/>
-            ✅ 빠른 의사소통<br/>
-            ✅ 유연한 대응
+            ✅ 가성비 우수<br/>✅ 빠른 의사소통<br/>✅ 유연한 대응
           </div>
         </div>
-
         <div className="card" style={{borderTop: '4px solid var(--accent)'}}>
           <div style={{fontSize: 12, fontWeight: 700, color: 'var(--accent)', marginBottom: 8}}>TYPE C</div>
           <div style={{fontSize: 18, fontWeight: 700, marginBottom: 4}}>AI 네이티브 개발자</div>
@@ -1778,9 +1105,7 @@ function Section6_Cost() {
           <div style={{fontSize: 28, fontWeight: 800, color: 'var(--primary)', marginBottom: 4}}>1,900~2,200만</div>
           <div style={{fontSize: 13, color: 'var(--gray-500)', marginBottom: 16}}>예상 기간: 3개월</div>
           <div style={{fontSize: 13, padding: 12, background: 'var(--accent-light)', borderRadius: 8}}>
-            ⚡ 압도적 저비용<br/>
-            ⚡ 빠른 개발 속도<br/>
-            ⚠️ 1인 의존 리스크
+            ⚡ 압도적 저비용<br/>⚡ 빠른 개발 속도<br/>⚠️ 1인 의존 리스크
           </div>
         </div>
       </div>
@@ -1791,16 +1116,12 @@ function Section6_Cost() {
           <div className="alert-icon">💡</div>
           <div className="alert-content">
             <div className="alert-title">견적에 포함 여부 확인 필요</div>
-            <div className="alert-text">아래 기능들은 기본 견적에 포함되지 않았을 가능성이 높습니다. 개발사에 별도 확인이 필요합니다.</div>
+            <div className="alert-text">아래 기능들은 기본 견적에 포함되지 않았을 가능성이 높습니다.</div>
           </div>
         </div>
         <table className="cost-table">
           <thead>
-            <tr>
-              <th>추가 기능</th>
-              <th>예상 추가 비용</th>
-              <th>필수 여부</th>
-            </tr>
+            <tr><th>추가 기능</th><th>예상 추가 비용</th><th>필수 여부</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -1836,17 +1157,17 @@ function Section6_Cost() {
       <div className="grid-3 mb-32">
         <div className="kpi-card" style={{background: 'linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)', border: '2px solid #3B82F6'}}>
           <div style={{fontSize: 12, fontWeight: 700, color: '#3B82F6', marginBottom: 4}}>TYPE A</div>
-          <div className="kpi-value" style={{fontSize: 24}}>7,000~8,100만</div>
+          <div className="kpi-value" style={{fontSize: 22}}>7,000~8,100만</div>
           <div className="kpi-note">대형 에이전시 + 추가기능</div>
         </div>
         <div className="kpi-card" style={{background: 'linear-gradient(135deg, var(--primary-light) 0%, #D1FAE5 100%)', border: '2px solid var(--primary)'}}>
           <div style={{fontSize: 12, fontWeight: 700, color: 'var(--primary)', marginBottom: 4}}>TYPE B ⭐</div>
-          <div className="kpi-value" style={{fontSize: 24}}>5,000~6,100만</div>
+          <div className="kpi-value" style={{fontSize: 22}}>5,000~6,100만</div>
           <div className="kpi-note">소규모 스튜디오 + 추가기능</div>
         </div>
         <div className="kpi-card" style={{background: 'linear-gradient(135deg, var(--accent-light) 0%, #FFEDD5 100%)', border: '2px solid var(--accent)'}}>
           <div style={{fontSize: 12, fontWeight: 700, color: 'var(--accent)', marginBottom: 4}}>TYPE C</div>
-          <div className="kpi-value" style={{fontSize: 24}}>2,550~3,500만</div>
+          <div className="kpi-value" style={{fontSize: 22}}>2,550~3,500만</div>
           <div className="kpi-note">AI 개발자 + 추가기능</div>
         </div>
       </div>
@@ -1854,60 +1175,22 @@ function Section6_Cost() {
       <h3 className="mb-24" style={{fontSize: '20px', fontWeight: 700}}>📅 예상 일정</h3>
       <div className="card mb-32">
         <div className="grid-4">
-          <div className="kpi-card">
-            <div className="kpi-value">2~3주</div>
-            <div className="kpi-label">기획 확정</div>
-            <div className="kpi-note">기능 명세 + 와이어프레임</div>
-          </div>
-          <div className="kpi-card">
-            <div className="kpi-value">3~3.5개월</div>
-            <div className="kpi-label">MVP 개발</div>
-            <div className="kpi-note">개발 + QA</div>
-          </div>
-          <div className="kpi-card">
-            <div className="kpi-value">2~4주</div>
-            <div className="kpi-label">직영점 테스트</div>
-            <div className="kpi-note">버그 수정 + 피드백</div>
-          </div>
-          <div className="kpi-card">
-            <div className="kpi-value">4~5개월</div>
-            <div className="kpi-label">총 예상</div>
-            <div className="kpi-note">기획 ~ 출시까지</div>
-          </div>
+          <div className="kpi-card"><div className="kpi-value">2~3주</div><div className="kpi-label">기획 확정</div><div className="kpi-note">기능 명세 + 와이어프레임</div></div>
+          <div className="kpi-card"><div className="kpi-value">3~3.5개월</div><div className="kpi-label">MVP 개발</div><div className="kpi-note">개발 + QA</div></div>
+          <div className="kpi-card"><div className="kpi-value">2~4주</div><div className="kpi-label">직영점 테스트</div><div className="kpi-note">버그 수정 + 피드백</div></div>
+          <div className="kpi-card"><div className="kpi-value">4~5개월</div><div className="kpi-label">총 예상</div><div className="kpi-note">기획 ~ 출시까지</div></div>
         </div>
       </div>
 
       <h3 className="mb-24" style={{fontSize: '20px', fontWeight: 700}}>🔄 월간 운영 비용</h3>
       <div className="card">
         <table className="cost-table">
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>예상 월 비용</th>
-              <th>비고</th>
-            </tr>
-          </thead>
+          <thead><tr><th>항목</th><th>예상 월 비용</th><th>비고</th></tr></thead>
           <tbody>
-            <tr>
-              <td><strong>서버 호스팅 (AWS/GCP)</strong></td>
-              <td className="cost-range">50 ~ 150만원</td>
-              <td>트래픽에 따라 변동</td>
-            </tr>
-            <tr>
-              <td><strong>카카오 알림톡</strong></td>
-              <td className="cost-range">건당 8~15원</td>
-              <td>월 1만건 = 약 10만원</td>
-            </tr>
-            <tr>
-              <td><strong>앱스토어 수수료</strong></td>
-              <td className="cost-range">약 15만원/년</td>
-              <td>Apple + Google</td>
-            </tr>
-            <tr>
-              <td><strong>유지보수 (선택)</strong></td>
-              <td className="cost-range">100 ~ 300만원</td>
-              <td>개발사 계약 시</td>
-            </tr>
+            <tr><td><strong>서버 호스팅 (AWS/GCP)</strong></td><td className="cost-range">50 ~ 150만원</td><td>트래픽에 따라 변동</td></tr>
+            <tr><td><strong>카카오 알림톡</strong></td><td className="cost-range">건당 8~15원</td><td>월 1만건 = 약 10만원</td></tr>
+            <tr><td><strong>앱스토어 수수료</strong></td><td className="cost-range">약 15만원/년</td><td>Apple + Google</td></tr>
+            <tr><td><strong>유지보수 (선택)</strong></td><td className="cost-range">100 ~ 300만원</td><td>개발사 계약 시</td></tr>
           </tbody>
         </table>
       </div>
@@ -1915,9 +1198,9 @@ function Section6_Cost() {
   );
 }
 
-function Section7_KPI() {
+function Concept_KPI() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">07</div>
         <h1 className="section-title">성공 지표 (KPI)</h1>
@@ -1948,44 +1231,21 @@ function Section7_KPI() {
         <div className="card">
           <div className="card-title"><span className="icon">🏪</span> 사장님 (B2B) 지표</div>
           <div style={{display: 'flex', flexDirection: 'column', gap: 12}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>신규 매장 가입률</span>
-              <strong className="text-primary">월 5개+</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>매장 이탈률 (Churn)</span>
-              <strong className="text-primary">&lt; 5%</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>유료 전환율</span>
-              <strong className="text-primary">&gt; 30%</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0'}}>
-              <span>NPS (추천 의향)</span>
-              <strong className="text-primary">&gt; 40</strong>
-            </div>
+            {[['신규 매장 가입률','월 5개+'],['매장 이탈률 (Churn)','< 5%'],['유료 전환율','> 30%'],['NPS (추천 의향)','> 40']].map(([label, val], i) => (
+              <div key={i} style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: i < 3 ? '1px solid var(--gray-200)' : 'none'}}>
+                <span>{label}</span><strong className="text-primary">{val}</strong>
+              </div>
+            ))}
           </div>
         </div>
-
         <div className="card">
           <div className="card-title"><span className="icon">👤</span> 소비자 (B2C) 지표</div>
           <div style={{display: 'flex', flexDirection: 'column', gap: 12}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>웹 → 앱 전환율</span>
-              <strong className="text-primary">&gt; 20%</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>예약 → 픽업 완료율</span>
-              <strong className="text-primary">&gt; 85%</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-200)'}}>
-              <span>재예약률 (30일 내)</span>
-              <strong className="text-primary">&gt; 40%</strong>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0'}}>
-              <span>노쇼율</span>
-              <strong className="text-primary">&lt; 10%</strong>
-            </div>
+            {[['웹 → 앱 전환율','> 20%'],['예약 → 픽업 완료율','> 85%'],['재예약률 (30일 내)','> 40%'],['노쇼율','< 10%']].map(([label, val], i) => (
+              <div key={i} style={{display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: i < 3 ? '1px solid var(--gray-200)' : 'none'}}>
+                <span>{label}</span><strong className="text-primary">{val}</strong>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -2014,9 +1274,9 @@ function Section7_KPI() {
   );
 }
 
-function Section8_Risk() {
+function Concept_Risk() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">08</div>
         <h1 className="section-title">리스크 및 차별화</h1>
@@ -2030,42 +1290,31 @@ function Section8_Risk() {
         <div className="risk-content">
           <div className="risk-title">소도몰이 이미 100호점인데, 너무 늦은 거 아닌가요?</div>
           <div className="risk-desc">소도몰은 "프랜차이즈" 모델. 우리는 "플랫폼" 모델로 완전히 다른 시장.</div>
-          <div className="risk-mitigation">
-            ✅ <strong>대응:</strong> 소도몰 가맹비 부담스러운 소규모 매장이 타겟. 오히려 시장 교육이 된 상태에서 진입하는 것이 유리.
-          </div>
+          <div className="risk-mitigation">✅ <strong>대응:</strong> 소도몰 가맹비 부담스러운 소규모 매장이 타겟. 오히려 시장 교육이 된 상태에서 진입하는 것이 유리.</div>
         </div>
       </div>
-
       <div className="risk-item mitigated">
         <div className="risk-icon">📱</div>
         <div className="risk-content">
           <div className="risk-title">사장님들이 새 시스템 배우기 싫어하면?</div>
           <div className="risk-desc">기존 카톡 방식에 익숙한 사장님들의 변화 저항.</div>
-          <div className="risk-mitigation">
-            ✅ <strong>대응:</strong> 단톡방 유지 + 링크만 추가. 기존 방식 100% 호환. 점진적 전환 유도.
-          </div>
+          <div className="risk-mitigation">✅ <strong>대응:</strong> 단톡방 유지 + 링크만 추가. 기존 방식 100% 호환. 점진적 전환 유도.</div>
         </div>
       </div>
-
       <div className="risk-item mitigated">
         <div className="risk-icon">💸</div>
         <div className="risk-content">
           <div className="risk-title">월정액 내기 싫어하면?</div>
           <div className="risk-desc">소규모 매장 사장님들의 비용 부담 우려.</div>
-          <div className="risk-mitigation">
-            ✅ <strong>대응:</strong> 초기 무료 기간 제공. 일매출 대비 구독료 비율 강조 (100만원 매출 대비 5만원 = 5%).
-          </div>
+          <div className="risk-mitigation">✅ <strong>대응:</strong> 초기 무료 기간 제공. 일매출 대비 구독료 비율 강조 (100만원 매출 대비 5만원 = 5%).</div>
         </div>
       </div>
-
       <div className="risk-item">
         <div className="risk-icon">🔄</div>
         <div className="risk-content">
           <div className="risk-title">소도몰/척척밥상이 비슷한 서비스 만들면?</div>
           <div className="risk-desc">대형 경쟁사의 플랫폼 진출 가능성.</div>
-          <div className="risk-mitigation">
-            ⏳ <strong>모니터링 필요:</strong> 현재는 프랜차이즈에 집중 중. 선점 후 락인(Lock-in) 효과로 방어.
-          </div>
+          <div className="risk-mitigation">⏳ <strong>모니터링 필요:</strong> 현재는 프랜차이즈에 집중 중. 선점 후 락인(Lock-in) 효과로 방어.</div>
         </div>
       </div>
 
@@ -2098,9 +1347,9 @@ function Section8_Risk() {
   );
 }
 
-function Section9_GTM() {
+function Concept_GTM() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">09</div>
         <h1 className="section-title">Go-to-Market 전략</h1>
@@ -2173,16 +1422,12 @@ function Section9_GTM() {
           <div style={{textAlign: 'center'}}>
             <div style={{fontSize: 14, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>사장님에게</div>
             <div style={{fontSize: 20, fontWeight: 700}}>"온맘마켓처럼 성장하세요"</div>
-            <div style={{fontSize: 14, color: 'var(--gray-600)', marginTop: 8}}>
-              직영 6개점 성장 노하우가<br/>담긴 플랫폼을 월 5만원에
-            </div>
+            <div style={{fontSize: 14, color: 'var(--gray-600)', marginTop: 8}}>직영 6개점 성장 노하우가<br/>담긴 플랫폼을 월 5만원에</div>
           </div>
           <div style={{textAlign: 'center'}}>
             <div style={{fontSize: 14, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>소비자에게</div>
             <div style={{fontSize: 20, fontWeight: 700}}>"우리 동네 공구를 한눈에"</div>
-            <div style={{fontSize: 14, color: 'var(--gray-600)', marginTop: 8}}>
-              카톡 단톡방 뒤지지 말고<br/>앱에서 예약하고 픽업하세요
-            </div>
+            <div style={{fontSize: 14, color: 'var(--gray-600)', marginTop: 8}}>카톡 단톡방 뒤지지 말고<br/>앱에서 예약하고 픽업하세요</div>
           </div>
         </div>
       </div>
@@ -2190,9 +1435,9 @@ function Section9_GTM() {
   );
 }
 
-function Section10_Discussion() {
+function Concept_Discussion() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">10</div>
         <h1 className="section-title">논의 필요 사항</h1>
@@ -2207,11 +1452,9 @@ function Section10_Discussion() {
           <div className="discussion-option">⚖️ 동시 개발</div>
         </div>
         <div className="discussion-note">
-          <strong>고려 사항:</strong> 앱은 리텐션에 유리하지만 설치 허들 있음. 웹은 진입 쉽지만 푸시 제한. 
-          현재 방향은 "앱 기반 + 웹 예약 페이지 병행"으로 논의 중.
+          <strong>고려 사항:</strong> 앱은 리텐션에 유리하지만 설치 허들 있음. 웹은 진입 쉽지만 푸시 제한. 현재 방향은 "앱 기반 + 웹 예약 페이지 병행"으로 논의 중.
         </div>
       </div>
-
       <div className="discussion-card">
         <div className="discussion-question">2️⃣ BM 모델 및 가격 설정</div>
         <div className="discussion-options">
@@ -2221,11 +1464,9 @@ function Section10_Discussion() {
           <div className="discussion-option">🆓 초기 무료</div>
         </div>
         <div className="discussion-note">
-          <strong>참고:</strong> 공구 마켓 평균 마진율 20~35%. 일매출 100만원 기준 월정액 5만원은 부담 가능한 수준.
-          초기 확산을 위해 무료 or 할인 기간 운영도 고려.
+          <strong>참고:</strong> 공구 마켓 평균 마진율 20~35%. 일매출 100만원 기준 월정액 5만원은 부담 가능한 수준. 초기 확산을 위해 무료 or 할인 기간 운영도 고려.
         </div>
       </div>
-
       <div className="discussion-card">
         <div className="discussion-question">3️⃣ 직영점 현장 데이터 확인 필요</div>
         <div className="discussion-options">
@@ -2235,11 +1476,9 @@ function Section10_Discussion() {
           <div className="discussion-option">📊 픽업 기한 (며칠?)</div>
         </div>
         <div className="discussion-note">
-          <strong>필요 이유:</strong> 실제 데이터 기반으로 기능 우선순위 결정. 
-          예) 노쇼율 높으면 → 리마인드 알림/패널티 기능 우선 개발.
+          <strong>필요 이유:</strong> 실제 데이터 기반으로 기능 우선순위 결정. 예) 노쇼율 높으면 → 리마인드 알림/패널티 기능 우선 개발.
         </div>
       </div>
-
       <div className="discussion-card">
         <div className="discussion-question">4️⃣ 예산 범위</div>
         <div className="discussion-options">
@@ -2248,11 +1487,8 @@ function Section10_Discussion() {
           <div className="discussion-option">💰 1억 ~ 1.5억</div>
           <div className="discussion-option">💰 1.5억 이상</div>
         </div>
-        <div className="discussion-note">
-          <strong>참고:</strong> MVP 예상 범위는 8천만원 ~ 1.4억원. 예산에 따라 기능 범위 조절 가능.
-        </div>
+        <div className="discussion-note"><strong>참고:</strong> MVP 예상 범위는 8천만원 ~ 1.4억원. 예산에 따라 기능 범위 조절 가능.</div>
       </div>
-
       <div className="discussion-card">
         <div className="discussion-question">5️⃣ 출시 목표 시점</div>
         <div className="discussion-options">
@@ -2260,11 +1496,8 @@ function Section10_Discussion() {
           <div className="discussion-option">📅 4~5개월 (안정적)</div>
           <div className="discussion-option">🏗️ 6개월+ (풀 기능)</div>
         </div>
-        <div className="discussion-note">
-          <strong>고려 사항:</strong> 빠른 출시 → 직영점에서 먼저 테스트 → 피드백 반영 → 확장.
-        </div>
+        <div className="discussion-note"><strong>고려 사항:</strong> 빠른 출시 → 직영점에서 먼저 테스트 → 피드백 반영 → 확장.</div>
       </div>
-
       <div className="discussion-card">
         <div className="discussion-question">6️⃣ 보상 시스템 MVP 포함 여부</div>
         <div className="discussion-options">
@@ -2273,55 +1506,37 @@ function Section10_Discussion() {
           <div className="discussion-option">🎯 Phase 2에서</div>
         </div>
         <div className="discussion-note">
-          <strong>아이디어:</strong> 픽업 완료 시 +1, 노쇼 시 -2, 연속 픽업 보너스 등.
-          단, 보상 사용처는 사장님 부담이므로 협의 필요.
+          <strong>아이디어:</strong> 픽업 완료 시 +1, 노쇼 시 -2, 연속 픽업 보너스 등. 단, 보상 사용처는 사장님 부담이므로 협의 필요.
         </div>
       </div>
 
       <div className="highlight-box" style={{marginTop: 32}}>
         <h4 style={{fontSize: 18, fontWeight: 700, marginBottom: 16}}>📝 회의 후 다음 단계</h4>
         <div className="grid-4" style={{gap: 16}}>
-          <div style={{fontSize: 14, textAlign: 'center'}}>
-            <div style={{fontSize: 24, marginBottom: 8}}>1️⃣</div>
-            <strong>의사결정 완료</strong><br/>
-            <span style={{fontSize: 12, color: 'var(--gray-600)'}}>위 질문들 방향 확정</span>
-          </div>
-          <div style={{fontSize: 14, textAlign: 'center'}}>
-            <div style={{fontSize: 24, marginBottom: 8}}>2️⃣</div>
-            <strong>기능 명세 확정</strong><br/>
-            <span style={{fontSize: 12, color: 'var(--gray-600)'}}>MVP 범위 최종 정리</span>
-          </div>
-          <div style={{fontSize: 14, textAlign: 'center'}}>
-            <div style={{fontSize: 24, marginBottom: 8}}>3️⃣</div>
-            <strong>개발사 미팅</strong><br/>
-            <span style={{fontSize: 12, color: 'var(--gray-600)'}}>확정 명세로 견적</span>
-          </div>
-          <div style={{fontSize: 14, textAlign: 'center'}}>
-            <div style={{fontSize: 24, marginBottom: 8}}>4️⃣</div>
-            <strong>킥오프</strong><br/>
-            <span style={{fontSize: 12, color: 'var(--gray-600)'}}>개발 시작</span>
-          </div>
+          {[['1️⃣','의사결정 완료','위 질문들 방향 확정'],['2️⃣','기능 명세 확정','MVP 범위 최종 정리'],['3️⃣','개발사 미팅','확정 명세로 견적'],['4️⃣','킥오프','개발 시작']].map(([num, title, desc]) => (
+            <div key={num} style={{fontSize: 14, textAlign: 'center'}}>
+              <div style={{fontSize: 24, marginBottom: 8}}>{num}</div>
+              <strong>{title}</strong><br/>
+              <span style={{fontSize: 12, color: 'var(--gray-600)'}}>{desc}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-function Section11_OpenQuestions() {
+function Concept_OpenQuestions() {
   return (
-    <div className="section active">
+    <div className="section">
       <div className="section-header">
         <div className="section-num">11</div>
         <h1 className="section-title">함께 고민해야 할 것들</h1>
         <p className="section-desc">본격적인 개발 전, 함께 생각해봐야 할 열린 질문들입니다.</p>
       </div>
 
-      {/* Q1 */}
       <div className="card mb-32" style={{borderLeft: '4px solid var(--accent)'}}>
-        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--accent)'}}>
-          Q1. 소도몰은 왜 이걸 안 만들었을까?
-        </h3>
-        
+        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--accent)'}}>Q1. 소도몰은 왜 이걸 안 만들었을까?</h3>
         <div style={{marginBottom: 24}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>현상</div>
           <div style={{display: 'flex', flexWrap: 'wrap', gap: 8}}>
@@ -2331,7 +1546,6 @@ function Section11_OpenQuestions() {
             <span className="tag tag-accent">근데 "통합 플랫폼"은 안 만듦</span>
           </div>
         </div>
-
         <div style={{marginBottom: 24}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>시사점</div>
           <ul style={{fontSize: 14, color: 'var(--gray-700)', listStyle: 'none', lineHeight: 2}}>
@@ -2341,14 +1555,10 @@ function Section11_OpenQuestions() {
             <li>• 이미 테스트하고 접었을 수도</li>
           </ul>
         </div>
-
         <div style={{background: '#FEF3C7', padding: 16, borderRadius: 12, marginBottom: 20}}>
           <div style={{fontSize: 14, fontWeight: 700, color: '#92400E', marginBottom: 4}}>🤔 고민 포인트</div>
-          <div style={{fontSize: 14, color: '#A16207'}}>
-            우리가 보는 "기회"가 진짜 기회인지, 이미 검증된 "실패"인지 구분 필요
-          </div>
+          <div style={{fontSize: 14, color: '#A16207'}}>우리가 보는 "기회"가 진짜 기회인지, 이미 검증된 "실패"인지 구분 필요</div>
         </div>
-
         <div style={{background: 'var(--primary-light)', padding: 16, borderRadius: 12}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>💡 대안/제안</div>
           <ul style={{fontSize: 14, color: 'var(--primary-dark)', listStyle: 'none', lineHeight: 1.8}}>
@@ -2359,12 +1569,8 @@ function Section11_OpenQuestions() {
         </div>
       </div>
 
-      {/* Q2 */}
       <div className="card mb-32" style={{borderLeft: '4px solid var(--purple)'}}>
-        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--purple)'}}>
-          Q2. 대기업이 진입하면 우리 무기는?
-        </h3>
-        
+        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--purple)'}}>Q2. 대기업이 진입하면 우리 무기는?</h3>
         <div style={{marginBottom: 24}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>현상</div>
           <div style={{display: 'flex', flexWrap: 'wrap', gap: 8}}>
@@ -2373,35 +1579,10 @@ function Section11_OpenQuestions() {
             <span className="tag tag-gray">둘 다 자본/기술/유저 보유</span>
           </div>
         </div>
-
-        <div style={{marginBottom: 24}}>
-          <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>시사점 - 현재 해자(Moat) 점검</div>
-          <div className="grid-3" style={{gap: 12}}>
-            <div style={{padding: 12, background: '#FEE2E2', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, color: '#991B1B'}}>기술 우위</div>
-              <div style={{fontSize: 18, fontWeight: 700, color: '#DC2626'}}>❌</div>
-              <div style={{fontSize: 11, color: '#991B1B'}}>누구나 만들 수 있음</div>
-            </div>
-            <div style={{padding: 12, background: '#FEE2E2', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, color: '#991B1B'}}>자본력</div>
-              <div style={{fontSize: 18, fontWeight: 700, color: '#DC2626'}}>❌</div>
-              <div style={{fontSize: 11, color: '#991B1B'}}>대기업 대비 열세</div>
-            </div>
-            <div style={{padding: 12, background: '#FEE2E2', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, color: '#991B1B'}}>네트워크</div>
-              <div style={{fontSize: 18, fontWeight: 700, color: '#DC2626'}}>❌</div>
-              <div style={{fontSize: 11, color: '#991B1B'}}>아직 6개점</div>
-            </div>
-          </div>
-        </div>
-
         <div style={{background: '#FEF3C7', padding: 16, borderRadius: 12, marginBottom: 20}}>
           <div style={{fontSize: 14, fontWeight: 700, color: '#92400E', marginBottom: 4}}>🤔 고민 포인트</div>
-          <div style={{fontSize: 14, color: '#A16207'}}>
-            "네이버가 똑같은 거 만들면 뭘로 이기지?" — 이 질문에 답이 있어야 함
-          </div>
+          <div style={{fontSize: 14, color: '#A16207'}}>"네이버가 똑같은 거 만들면 뭘로 이기지?" — 이 질문에 답이 있어야 함</div>
         </div>
-
         <div style={{background: 'var(--purple-light)', padding: 16, borderRadius: 12}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--purple)', marginBottom: 8}}>💡 대안/제안</div>
           <ul style={{fontSize: 14, color: '#3730A3', listStyle: 'none', lineHeight: 1.8}}>
@@ -2412,12 +1593,8 @@ function Section11_OpenQuestions() {
         </div>
       </div>
 
-      {/* Q3 */}
       <div className="card mb-40" style={{borderLeft: '4px solid var(--primary)'}}>
-        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--primary)'}}>
-          Q3. 이 BM이 지속 가능한가?
-        </h3>
-        
+        <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20, color: 'var(--primary)'}}>Q3. 이 BM이 지속 가능한가?</h3>
         <div style={{marginBottom: 24}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>현상</div>
           <div style={{display: 'flex', flexWrap: 'wrap', gap: 8}}>
@@ -2426,24 +1603,10 @@ function Section11_OpenQuestions() {
             <span className="tag tag-accent">현재 카톡/엑셀로 "공짜" 운영 중</span>
           </div>
         </div>
-
-        <div style={{marginBottom: 24}}>
-          <div style={{fontSize: 14, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 12}}>시사점</div>
-          <ul style={{fontSize: 14, color: 'var(--gray-700)', listStyle: 'none', lineHeight: 2}}>
-            <li>• "불편하지만 공짜" vs "편하지만 유료" → 소상공인은 대부분 공짜 선택</li>
-            <li>• 월 4.9만원은 유사 서비스 대비 높은 편</li>
-            <li>• 가격 낮추면 BEP 더 멀어지는 딜레마</li>
-            <li>• 수수료 모델은 현금결제 많아서 추적 어려움</li>
-          </ul>
-        </div>
-
         <div style={{background: '#FEF3C7', padding: 16, borderRadius: 12, marginBottom: 20}}>
           <div style={{fontSize: 14, fontWeight: 700, color: '#92400E', marginBottom: 4}}>🤔 고민 포인트</div>
-          <div style={{fontSize: 14, color: '#A16207'}}>
-            사장님이 정말 돈을 낼까? 낸다면 얼마까지? 몇 개 매장이 있어야 손익분기?
-          </div>
+          <div style={{fontSize: 14, color: '#A16207'}}>사장님이 정말 돈을 낼까? 낸다면 얼마까지? 몇 개 매장이 있어야 손익분기?</div>
         </div>
-
         <div style={{background: 'var(--primary-light)', padding: 16, borderRadius: 12}}>
           <div style={{fontSize: 14, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>💡 대안/제안</div>
           <ul style={{fontSize: 14, color: 'var(--primary-dark)', listStyle: 'none', lineHeight: 1.8}}>
@@ -2455,70 +1618,37 @@ function Section11_OpenQuestions() {
         </div>
       </div>
 
-      {/* 대표님께 드리는 질문 */}
       <div className="card mb-40" style={{background: 'var(--gray-100)', border: '2px dashed var(--gray-300)'}}>
         <h3 style={{fontSize: 18, fontWeight: 700, marginBottom: 20}}>📋 대표님께 드리는 질문</h3>
         <div style={{display: 'flex', flexDirection: 'column', gap: 16}}>
-          <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
-            <span style={{background: 'var(--primary)', color: 'white', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0}}>1</span>
-            <span style={{fontSize: 15}}>"소도몰이 이걸 왜 안 만들었다고 생각하세요?"</span>
-          </div>
-          <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
-            <span style={{background: 'var(--primary)', color: 'white', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0}}>2</span>
-            <span style={{fontSize: 15}}>"네이버가 진입하면 우리가 이길 무기가 뭘까요?"</span>
-          </div>
-          <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
-            <span style={{background: 'var(--primary)', color: 'white', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0}}>3</span>
-            <span style={{fontSize: 15}}>"문의 온 매장 중 '돈 내겠다'고 한 곳 있나요? 얼마까지?"</span>
-          </div>
-          <div style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
-            <span style={{background: 'var(--primary)', color: 'white', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0}}>4</span>
-            <span style={{fontSize: 15}}>"전국에 타겟 매장이 대략 몇 개쯤 있을까요?"</span>
-          </div>
+          {[
+            '"소도몰이 이걸 왜 안 만들었다고 생각하세요?"',
+            '"네이버가 진입하면 우리가 이길 무기가 뭘까요?"',
+            '"문의 온 매장 중 \'돈 내겠다\'고 한 곳 있나요? 얼마까지?"',
+            '"전국에 타겟 매장이 대략 몇 개쯤 있을까요?"',
+          ].map((q, i) => (
+            <div key={i} style={{display: 'flex', gap: 12, alignItems: 'flex-start'}}>
+              <span style={{background: 'var(--primary)', color: 'white', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0}}>{i+1}</span>
+              <span style={{fontSize: 15}}>{q}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* 제안 방향 */}
       <div className="highlight-box">
         <h3 style={{fontSize: 20, fontWeight: 700, marginBottom: 20}}>💡 제안 드리는 방향</h3>
-        
         <div className="grid-2" style={{gap: 24, marginBottom: 24}}>
           <div style={{background: 'white', padding: 20, borderRadius: 12}}>
             <div style={{fontSize: 13, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 8}}>현재 계획</div>
             <div style={{fontSize: 15, fontWeight: 600, marginBottom: 8}}>소비자 앱 + 사장님 웹 동시 개발</div>
-            <div style={{fontSize: 14, color: 'var(--gray-600)'}}>
-              예상 비용: 5,000~6,000만원+<br/>
-              예상 기간: 3.5~4개월
-            </div>
+            <div style={{fontSize: 14, color: 'var(--gray-600)'}}>예상 비용: 5,000~6,000만원+<br/>예상 기간: 3.5~4개월</div>
           </div>
           <div style={{background: 'white', padding: 20, borderRadius: 12, border: '2px solid var(--primary)'}}>
             <div style={{fontSize: 13, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>제안</div>
             <div style={{fontSize: 15, fontWeight: 600, marginBottom: 8}}>Phase 1은 "웹 퍼스트"로 가볍게</div>
-            <div style={{fontSize: 14, color: 'var(--gray-600)'}}>
-              예상 비용: 2,500~3,500만원<br/>
-              예상 기간: 2.5~3개월
-            </div>
+            <div style={{fontSize: 14, color: 'var(--gray-600)'}}>예상 비용: 2,500~3,500만원<br/>예상 기간: 2.5~3개월</div>
           </div>
         </div>
-
-        <div style={{background: 'white', padding: 20, borderRadius: 12, marginBottom: 20}}>
-          <div style={{fontSize: 14, fontWeight: 700, marginBottom: 12}}>웹 퍼스트 구성</div>
-          <div className="grid-3" style={{gap: 12}}>
-            <div style={{padding: 12, background: 'var(--primary-light)', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, fontWeight: 600}}>소비자</div>
-              <div style={{fontSize: 12, color: 'var(--gray-600)'}}>웹 예약 페이지 (앱 X)</div>
-            </div>
-            <div style={{padding: 12, background: 'var(--purple-light)', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, fontWeight: 600}}>사장님</div>
-              <div style={{fontSize: 12, color: 'var(--gray-600)'}}>웹 대시보드</div>
-            </div>
-            <div style={{padding: 12, background: 'var(--accent-light)', borderRadius: 8, textAlign: 'center'}}>
-              <div style={{fontSize: 13, fontWeight: 600}}>알림</div>
-              <div style={{fontSize: 12, color: 'var(--gray-600)'}}>카카오 알림톡 (QR 포함)</div>
-            </div>
-          </div>
-        </div>
-
         <div style={{fontSize: 14, lineHeight: 1.8}}>
           <div style={{fontWeight: 700, marginBottom: 8}}>이유</div>
           <ul style={{listStyle: 'none', color: 'var(--gray-700)'}}>
@@ -2528,14 +1658,255 @@ function Section11_OpenQuestions() {
             <li>✓ 시장 검증 후 앱 확장 가능 (구조만 잡아두면)</li>
           </ul>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        <div style={{marginTop: 20, padding: 16, background: 'white', borderRadius: 12, border: '1px solid var(--primary)'}}>
-          <div style={{fontSize: 14, fontWeight: 700, color: 'var(--primary)', marginBottom: 8}}>검증 후 앱 개발 조건</div>
-          <div style={{fontSize: 13, color: 'var(--gray-600)'}}>
-            • 웹 예약 전환율 30%+ 달성<br/>
-            • 입점 매장 20개+ 확보<br/>
-            • 사장님 만족도 확인<br/>
-            → 그때 앱 개발 착수해도 늦지 않음
+// =====================
+// 공구플랫폼 섹션 컴포넌트
+// =====================
+function Platform_Market() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">01</div>
+        <h1 className="section-title">시장 현황 및 기회</h1>
+        <p className="section-desc">오프라인 공동구매 시장의 성장과 디지털화 기회</p>
+      </div>
+      <div className="grid-3 mb-24">
+        <div className="card" style={{borderTop: '4px solid #FFD700'}}>
+          <div style={{fontSize: 11, fontWeight: 700, color: '#B8860B', marginBottom: 6}}>1위</div>
+          <div style={{fontSize: 18, fontWeight: 700, marginBottom: 10}}>소도몰</div>
+          <div style={{fontSize: 13, color: 'var(--gray-600)', lineHeight: 1.8}}>100호점+<br/>기업가치 1,000억<br/>투자 150억+</div>
+        </div>
+        <div className="card" style={{borderTop: '4px solid #C0C0C0'}}>
+          <div style={{fontSize: 11, fontWeight: 700, color: '#808080', marginBottom: 6}}>2위</div>
+          <div style={{fontSize: 18, fontWeight: 700, marginBottom: 10}}>척척밥상</div>
+          <div style={{fontSize: 13, color: 'var(--gray-600)', lineHeight: 1.8}}>24개 매장<br/>폐점률 0%<br/>무인 키오스크</div>
+        </div>
+        <div className="card" style={{borderTop: '4px solid #CD7F32'}}>
+          <div style={{fontSize: 11, fontWeight: 700, color: '#8B4513', marginBottom: 6}}>3위</div>
+          <div style={{fontSize: 18, fontWeight: 700, marginBottom: 10}}>호랑마켓</div>
+          <div style={{fontSize: 13, color: 'var(--gray-600)', lineHeight: 1.8}}>7개 매장<br/>연매출 150억<br/>이익률 15%</div>
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-title">📊 시장 운영 방식</div>
+        <table>
+          <tbody>
+            <tr><td><strong>상위 업체</strong></td><td>AI 파싱 + 엑셀 + Ctrl+F</td></tr>
+            <tr><td><strong>소규모 업체</strong></td><td>수기 메모장 + 찍찍 긋기</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Platform_Vision() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">02</div>
+        <h1 className="section-title">플랫폼 비전</h1>
+        <p className="section-desc">단톡방에서 이미 검증된 행동들을 플랫폼으로 확장합니다.</p>
+      </div>
+      <div className="card mb-24">
+        <div className="card-title">💡 왜 이 플랫폼이 필요한가?</div>
+        <div className="grid-2" style={{gap: 24}}>
+          <div style={{padding: 20, background: 'var(--red-light)', borderRadius: 12}}>
+            <div style={{fontSize: 14, fontWeight: 700, color: 'var(--red)', marginBottom: 12}}>😫 현재 상황</div>
+            <div style={{fontSize: 13, lineHeight: 1.9}}>
+              <strong>상위 업체 (온맘마켓 등)</strong><br/>
+              • 카톡 오픈채팅으로 주문 접수<br/>
+              • AI 파싱으로 자동 수집 → 엑셀 저장<br/>
+              • 픽업 시 Ctrl+F로 고객 검색<br/><br/>
+              <strong>소규모 업체</strong><br/>
+              • 메모장에 수기로 기록<br/>
+              • 고객 오면 노트에서 이름 찾아서 찍찍 긋기<br/>
+              • 집계/정산 모두 수작업
+            </div>
+          </div>
+          <div style={{padding: 20, background: 'var(--green-light)', borderRadius: 12}}>
+            <div style={{fontSize: 14, fontWeight: 700, color: 'var(--green-dark)', marginBottom: 12}}>✅ 플랫폼이 해결하는 것</div>
+            <div style={{fontSize: 13, lineHeight: 1.9}}>
+              <strong>예약 자동화</strong><br/>
+              • 웹/앱에서 바로 예약 → 자동 집계<br/>
+              • 노쇼 리마인드 알림 자동 발송<br/><br/>
+              <strong>픽업 효율화</strong><br/>
+              • QR 코드로 1초 만에 확인<br/>
+              • 실시간 픽업 현황 대시보드<br/><br/>
+              <strong>데이터 축적</strong><br/>
+              • 인기 상품, 재구매율, 노쇼율 분석
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="card mb-24">
+        <div className="card-title">🔥 단톡방에서 이미 일어나고 있는 것들</div>
+        <div className="grid-2" style={{gap: 24}}>
+          <div style={{padding: 20, border: '2px solid var(--primary)', borderRadius: 12, background: 'var(--primary-light)'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12}}>
+              <span style={{fontSize: 28}}>🍽️</span>
+              <div>
+                <div style={{fontSize: 16, fontWeight: 700}}>온맘한상</div>
+                <span className="tag tag-primary">이미 검증됨</span>
+              </div>
+            </div>
+            <div style={{fontSize: 13, lineHeight: 1.8, marginBottom: 12}}>
+              소비자들이 공구 상품으로 차린 저녁 한상 사진을 <strong>자발적으로</strong> 단톡방에 올리는 문화.
+            </div>
+            <div style={{padding: 10, background: 'white', borderRadius: 8, fontSize: 12}}>
+              → 인스타그램 같은 <strong>후기 피드</strong>로 플랫폼화
+            </div>
+          </div>
+          <div style={{padding: 20, border: '2px solid var(--purple)', borderRadius: 12, background: 'var(--purple-light)'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12}}>
+              <span style={{fontSize: 28}}>🎁</span>
+              <div>
+                <div style={{fontSize: 16, fontWeight: 700}}>공구 상품 나눔</div>
+                <span className="tag tag-purple">이미 검증됨</span>
+              </div>
+            </div>
+            <div style={{fontSize: 13, lineHeight: 1.8, marginBottom: 12}}>
+              "사과 5kg 샀는데 다 못 먹어요, 나눔합니다"<br/>
+              공구 상품 특성상 <strong>대용량</strong>이라 나눔 니즈가 자연스럽게 발생.
+            </div>
+            <div style={{padding: 10, background: 'white', borderRadius: 8, fontSize: 12}}>
+              → 같은 매장 고객 간 <strong>나눔 매칭</strong> 기능으로 플랫폼화
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="highlight-box mb-24">
+        <div style={{fontSize: 16, fontWeight: 700, marginBottom: 16}}>🎯 핵심 포인트</div>
+        <div className="grid-3" style={{gap: 16}}>
+          {[['✅','이미 검증된 행동','온맘한상, 나눔 모두 단톡방에서 자발적으로 발생 중'],['📈','시장 성장 검증','소도몰 100호점, 기업가치 1,000억. 시장 자체는 빠르게 성장 중'],['🎯','명확한 타겟','프랜차이즈 안 하는 독립 소규모 공구 매장']].map(([icon,title,desc]) => (
+            <div key={title} style={{background: 'white', padding: 16, borderRadius: 10, textAlign: 'center'}}>
+              <div style={{fontSize: 28, marginBottom: 8}}>{icon}</div>
+              <div style={{fontSize: 14, fontWeight: 700, marginBottom: 6}}>{title}</div>
+              <div style={{fontSize: 12, color: 'var(--gray-600)'}}>{desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-title">📍 Phase별 확장 전략</div>
+        {[
+          {phase:'PHASE 1 · MVP', title:'예약 + 후기', dur:'3~4개월', color:'var(--primary)', bg:'var(--primary-light)', tag:'tag-primary',
+           items:[['🛒 공구 예약','단톡방 링크 → 웹에서 바로 예약. 앱 설치 없이 카톡 알림톡으로 QR 발급. 사장님은 QR 스캔만으로 픽업 처리'],['📷 후기 피드 (온맘한상)','한상 사진 + 간단 후기 업로드. 좋아요/댓글로 소통. "이 한상에 쓴 상품" 태그 연결']],
+           reason:'엑셀+Ctrl+F 대신 QR 스캔 1초 처리. 사장님 시간 절약 + 노쇼율 감소가 명확한 가치.'},
+          {phase:'PHASE 2 · 확장', title:'나눔 + 커뮤니티', dur:'2~3개월', color:'var(--purple)', bg:'var(--purple-light)', tag:'tag-purple',
+           items:[['🎁 나눔 기능','"사과 5kg 중 2kg 나눔해요". 같은 매장 이용자끼리 매칭. 픽업 시간에 매장에서 전달'],['💬 커뮤니티 게시판','공구 상품 후기/질문. 요리 레시피 공유. 신상품 정보 교환']],
+           reason:'이미 단톡방에서 하고 있는 행동. 플랫폼이 더 편하면 자연스럽게 이동.'},
+          {phase:'PHASE 3 · 스케일업', title:'로컬 커뮤니티 플랫폼', dur:'3~4개월', color:'var(--accent)', bg:'var(--accent-light)', tag:'tag-accent',
+           items:[['💬 커뮤니티 고도화','공구 상품 정보/후기 활성화. 요리 레시피, 살림 꿀팁 공유. 동네 생활 정보 게시판'],['👥 소셜 기능','팔로우/팔로잉. 1:1 채팅 (나눔 매칭용). 맘카페형 소통 공간']],
+           reason:'최종 목표: 공구 예약 앱 → 동네 엄마들의 생활 커뮤니티 (맘카페 + 공구 결합)'},
+        ].map(({phase,title,dur,color,bg,tag,items,reason}) => (
+          <div key={phase} style={{padding: 20, marginBottom: 16, border: '1px solid var(--gray-300)', borderRadius: 12, borderLeft: `4px solid ${color}`}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16}}>
+              <div>
+                <span className={`tag ${tag}`} style={{marginBottom: 8, display: 'inline-block'}}>{phase}</span>
+                <div style={{fontSize: 18, fontWeight: 700}}>{title}</div>
+              </div>
+              <div style={{textAlign: 'right'}}>
+                <div style={{fontSize: 18, fontWeight: 800, color}}>{dur}</div>
+                <div style={{fontSize: 12, color: 'var(--gray-500)'}}>개발 기간</div>
+              </div>
+            </div>
+            <div className="grid-2" style={{gap: 16}}>
+              {items.map(([head,body]) => (
+                <div key={head}>
+                  <div style={{fontSize: 13, fontWeight: 700, marginBottom: 10}}>{head}</div>
+                  <div style={{fontSize: 13, color: 'var(--gray-600)', lineHeight: 1.7}}>{body.replace(/\./g,'.\n').split('\n').map((l,i)=><span key={i}>{l}<br/></span>)}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop: 16, padding: 12, background: bg, borderRadius: 8}}>
+              <strong style={{fontSize: 13}}>왜 먹힐까?</strong>
+              <span style={{fontSize: 13, marginLeft: 8}}>{reason}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Platform_Roadmap() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">03</div>
+        <h1 className="section-title">Phase별 로드맵</h1>
+        <p className="section-desc">단계별 기능 범위와 목표</p>
+      </div>
+      <div className="card mb-20" style={{borderLeft: '4px solid var(--primary)'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16}}>
+          <div><span className="tag tag-primary">PHASE 1</span><span style={{fontSize: 18, fontWeight: 700, marginLeft: 12}}>예약 + 후기 (MVP)</span></div>
+          <div style={{fontSize: 20, fontWeight: 800, color: 'var(--primary)'}}>3~4개월</div>
+        </div>
+        <div className="grid-2">
+          <div><div style={{fontSize: 13, fontWeight: 700, marginBottom: 10}}>소비자</div><div style={{fontSize: 13}}>회원가입 · 매장탐색 · 예약 · 후기</div></div>
+          <div><div style={{fontSize: 13, fontWeight: 700, marginBottom: 10}}>사장님</div><div style={{fontSize: 13}}>상품관리 · 예약관리 · QR스캔 · 통계</div></div>
+        </div>
+      </div>
+      <div className="card mb-20" style={{borderLeft: '4px solid var(--purple)'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16}}>
+          <div><span className="tag tag-purple">PHASE 2</span><span style={{fontSize: 18, fontWeight: 700, marginLeft: 12}}>나눔 + 커뮤니티</span></div>
+          <div style={{fontSize: 20, fontWeight: 800, color: 'var(--purple)'}}>2~3개월</div>
+        </div>
+        <div style={{fontSize: 13}}>나눔 게시/매칭 · 커뮤니티 게시판 · 앱 전환 · 푸시 알림</div>
+      </div>
+      <div className="card" style={{borderLeft: '4px solid var(--accent)'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16}}>
+          <div><span className="tag tag-accent">PHASE 3</span><span style={{fontSize: 18, fontWeight: 700, marginLeft: 12}}>로컬 커뮤니티 확장</span></div>
+          <div style={{fontSize: 20, fontWeight: 800, color: 'var(--accent)'}}>3~4개월</div>
+        </div>
+        <div style={{fontSize: 13}}>커뮤니티 고도화 · 채팅 · 팔로우 · 프로필 · 동네정보</div>
+      </div>
+    </div>
+  );
+}
+
+function Platform_Cost() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">04</div>
+        <h1 className="section-title">기능별 예상 비용</h1>
+        <p className="section-desc">Phase별 상세 비용 (TYPE B/C 비교)</p>
+      </div>
+      <div className="alert alert-primary mb-20">
+        <div className="alert-icon">💡</div>
+        <div><div className="alert-title">개발 유형</div><div className="alert-text">TYPE B: 소규모 스튜디오 (가성비) / TYPE C: AI 네이티브 (최저가)</div></div>
+      </div>
+      {[
+        {title:'Phase 1: 예약 + 후기', color:'var(--primary)', rows:[['소비자 웹 (5개 기능)','1,500~2,000만','750~1,150만'],['사장님 웹 (4개 기능)','900~1,200만','450~700만'],['백엔드/인프라','1,000~1,400만','500~850만']], total:['3,400~4,600만','1,700~2,700만']},
+        {title:'Phase 2: 나눔 + 커뮤니티', color:'var(--purple)', rows:[['나눔 기능','600~850만','300~500만'],['커뮤니티','550~750만','280~470만'],['앱 전환 + 푸시','750~1,000만','380~620만']], total:['1,900~2,600만','960~1,590만']},
+        {title:'Phase 3: 로컬 커뮤니티', color:'var(--accent)', rows:[['커뮤니티 고도화 + 채팅','1,000~1,300만','510~790만'],['소셜 기능','950~1,400만','480~720만']], total:['1,950~2,700만','990~1,510만']},
+      ].map(({title, color, rows, total}) => (
+        <div className="card mb-20" key={title}>
+          <div className="card-title" style={{color}}>{title}</div>
+          <table>
+            <thead><tr><th>기능</th><th>TYPE B</th><th>TYPE C</th></tr></thead>
+            <tbody>
+              {rows.map(([f,b,c]) => <tr key={f}><td>{f}</td><td>{b}</td><td>{c}</td></tr>)}
+              <tr className="cost-highlight"><td><strong>합계</strong></td><td className="cost-total">{total[0]}</td><td className="cost-total">{total[1]}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      ))}
+      <div className="highlight-box" style={{marginTop: 20}}>
+        <div className="grid-2">
+          <div style={{textAlign: 'center'}}>
+            <div style={{fontSize: 13, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 6}}>TYPE B 전체</div>
+            <div style={{fontSize: 28, fontWeight: 800, color: 'var(--primary)'}}>7,250~9,900만</div>
+          </div>
+          <div style={{textAlign: 'center'}}>
+            <div style={{fontSize: 13, fontWeight: 700, color: 'var(--gray-500)', marginBottom: 6}}>TYPE C 전체</div>
+            <div style={{fontSize: 28, fontWeight: 800, color: 'var(--primary)'}}>3,650~5,800만</div>
           </div>
         </div>
       </div>
@@ -2543,165 +1914,316 @@ function Section11_OpenQuestions() {
   );
 }
 
+function Platform_WebVsApp() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">05</div>
+        <h1 className="section-title">웹 vs 앱 전략</h1>
+        <p className="section-desc">Phase 1을 웹으로 시작할지, 앱으로 시작할지 비교</p>
+      </div>
+      <div className="card mb-20">
+        <div className="card-title">💰 Phase 1 비용 비교</div>
+        <table>
+          <thead><tr><th></th><th>웹 퍼스트</th><th>앱 퍼스트</th><th>차이</th></tr></thead>
+          <tbody>
+            <tr><td>TYPE B</td><td>3,400~4,600만</td><td>4,300~5,900만</td><td style={{color: 'var(--red)'}}>+900~1,300만</td></tr>
+            <tr><td>TYPE C</td><td>1,700~2,700만</td><td>2,200~3,500만</td><td style={{color: 'var(--red)'}}>+500~800만</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="grid-2 mb-20">
+        <div className="card" style={{borderTop: '4px solid var(--primary)'}}>
+          <div style={{fontSize: 15, fontWeight: 700, color: 'var(--primary)', marginBottom: 14}}>🌐 웹 퍼스트</div>
+          <div style={{fontSize: 13, color: 'var(--green)', marginBottom: 8}}>장점</div>
+          <div style={{fontSize: 13, marginBottom: 12}}>✅ 초기 비용 낮음<br/>✅ 앱 설치 허들 없음<br/>✅ 빠른 출시<br/>✅ 검증 후 결정</div>
+          <div style={{fontSize: 13, color: 'var(--red)', marginBottom: 8}}>단점</div>
+          <div style={{fontSize: 13}}>❌ 푸시 알림 불가<br/>❌ 앱스토어 노출 X</div>
+        </div>
+        <div className="card" style={{borderTop: '4px solid var(--purple)'}}>
+          <div style={{fontSize: 15, fontWeight: 700, color: 'var(--purple)', marginBottom: 14}}>📱 앱 퍼스트</div>
+          <div style={{fontSize: 13, color: 'var(--green)', marginBottom: 8}}>장점</div>
+          <div style={{fontSize: 13, marginBottom: 12}}>✅ 푸시 알림<br/>✅ 앱스토어 노출<br/>✅ "제대로 된 서비스" 인식</div>
+          <div style={{fontSize: 13, color: 'var(--red)', marginBottom: 8}}>단점</div>
+          <div style={{fontSize: 13}}>❌ 초기 비용 높음<br/>❌ 앱 설치 허들<br/>❌ 검증 전 큰 투자</div>
+        </div>
+      </div>
+      <div className="highlight-box">
+        <div style={{fontSize: 15, fontWeight: 700, marginBottom: 10}}>💡 권장: Phase 1은 웹, Phase 2부터 앱</div>
+        <div style={{fontSize: 14}}>처음부터 앱 → 이탈 / 웹으로 시작 → 익숙해지면 앱으로 자연스럽게 전환</div>
+      </div>
+    </div>
+  );
+}
+
+function Platform_Schedule() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">06</div>
+        <h1 className="section-title">예상 일정 및 운영비</h1>
+        <p className="section-desc">전체 개발 일정과 출시 후 운영 비용</p>
+      </div>
+      <div className="grid-4 mb-24">
+        <div className="kpi-card" style={{background: 'var(--primary-light)'}}><div className="kpi-value" style={{fontSize: 22}}>3~4개월</div><div className="kpi-label">Phase 1</div></div>
+        <div className="kpi-card" style={{background: 'var(--purple-light)'}}><div className="kpi-value" style={{fontSize: 22, color: 'var(--purple)'}}>2~3개월</div><div className="kpi-label">Phase 2</div></div>
+        <div className="kpi-card" style={{background: 'var(--accent-light)'}}><div className="kpi-value" style={{fontSize: 22, color: 'var(--accent)'}}>3~4개월</div><div className="kpi-label">Phase 3</div></div>
+        <div className="kpi-card" style={{background: 'var(--green-light)'}}><div className="kpi-value" style={{fontSize: 22, color: 'var(--green)'}}>8~11개월</div><div className="kpi-label">전체</div></div>
+      </div>
+      <div className="card">
+        <div className="card-title">💸 월 운영비 (Phase 1 출시 후)</div>
+        <table>
+          <tbody>
+            <tr><td>서버/인프라</td><td>30~80만/월</td></tr>
+            <tr><td>카카오 알림톡</td><td>10~30만/월</td></tr>
+            <tr><td>유지보수</td><td>100~200만/월</td></tr>
+            <tr style={{background: 'var(--primary-light)'}}><td><strong>합계</strong></td><td><strong>140~310만/월</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Platform_KPI() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">07</div>
+        <h1 className="section-title">성공 지표 (KPI)</h1>
+        <p className="section-desc">Phase별 목표 지표와 진입 조건</p>
+      </div>
+      <div className="card mb-20">
+        <div className="card-title" style={{color: 'var(--primary)'}}>Phase 1 목표</div>
+        <div className="grid-4">
+          <div className="kpi-card"><div className="kpi-value">20%+</div><div className="kpi-label">웹 예약률</div></div>
+          <div className="kpi-card"><div className="kpi-value">50건+</div><div className="kpi-label">주간 후기</div></div>
+          <div className="kpi-card"><div className="kpi-value">4.0/5</div><div className="kpi-label">만족도</div></div>
+          <div className="kpi-card"><div className="kpi-value">30%↓</div><div className="kpi-label">노쇼율</div></div>
+        </div>
+      </div>
+      <div className="card mb-20">
+        <div className="card-title" style={{color: 'var(--purple)'}}>Phase 2 진입 조건</div>
+        <div className="grid-3">
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--purple)'}}><div className="kpi-value" style={{color: 'var(--purple)'}}>100건+</div><div className="kpi-label">주간 후기</div></div>
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--purple)'}}><div className="kpi-value" style={{color: 'var(--purple)'}}>20개+</div><div className="kpi-label">매장</div></div>
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--purple)'}}><div className="kpi-value" style={{color: 'var(--purple)'}}>30%+</div><div className="kpi-label">예약 비중</div></div>
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-title" style={{color: 'var(--accent)'}}>Phase 3 진입 조건</div>
+        <div className="grid-3">
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--accent)'}}><div className="kpi-value" style={{color: 'var(--accent)'}}>10,000+</div><div className="kpi-label">MAU</div></div>
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--accent)'}}><div className="kpi-value" style={{color: 'var(--accent)'}}>50개+</div><div className="kpi-label">매장</div></div>
+          <div className="kpi-card" style={{borderLeft: '3px solid var(--accent)'}}><div className="kpi-value" style={{color: 'var(--accent)'}}>1,000+</div><div className="kpi-label">DAU</div></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Platform_Risk() {
+  return (
+    <div className="section">
+      <div className="section-header">
+        <div className="section-num">08</div>
+        <h1 className="section-title">리스크 및 고려사항</h1>
+        <p className="section-desc">주요 리스크와 검증 필요 사항</p>
+      </div>
+      <div className="card mb-20">
+        <div className="card-title">⚠️ 주요 리스크</div>
+        <table>
+          <thead><tr><th>리스크</th><th>심각도</th><th>대응</th></tr></thead>
+          <tbody>
+            <tr><td>단톡방 → 앱 전환 실패</td><td><span className="tag tag-red">높음</span></td><td>웹 퍼스트로 허들 최소화</td></tr>
+            <tr><td>유료 전환율 저조</td><td><span className="tag tag-red">높음</span></td><td>Freemium 모델, 가격 테스트</td></tr>
+            <tr><td>대기업 진입</td><td><span className="tag tag-accent">중간</span></td><td>니치 시장 집중, 속도 선점</td></tr>
+            <tr><td>커뮤니티 활성화 실패</td><td><span className="tag tag-accent">중간</span></td><td>예약 기능만으로 수익화 가능</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="card mb-20" style={{background: 'var(--gray-100)'}}>
+        <div className="card-title">❓ 열린 질문들</div>
+        <div style={{fontSize: 14, lineHeight: 2}}>
+          1. 소도몰은 왜 통합 플랫폼을 안 만들었을까?<br/>
+          2. 네이버/카카오가 진입하면 이길 수 있는 무기가 있나?<br/>
+          3. 전국에 타겟 매장이 얼마나 있고, 유료 전환 의향은?<br/>
+          4. 단톡방의 FOMO 효과가 앱에서도 유지될까?
+        </div>
+      </div>
+      <div className="highlight-box">
+        <div style={{fontSize: 15, fontWeight: 700, marginBottom: 10}}>💡 리스크 최소화 전략</div>
+        <div style={{fontSize: 14}}>
+          1. <strong>단계별 투자</strong> — Phase별 검증 후 진행<br/>
+          2. <strong>웹 퍼스트</strong> — 앱 허들 제거, 검증 후 앱 전환<br/>
+          3. <strong>직영점 테스트</strong> — 외부 확장 전 내부 검증<br/>
+          4. <strong>명확한 KPI</strong> — 목표 미달 시 피벗/중단 기준 설정
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =====================
+// Main App
+// =====================
 function App() {
+  const [activeTab, setActiveTab] = useState('concept');
   const [activeSection, setActiveSection] = useState('market');
   const [memo, setMemo] = useState('');
   const [toast, setToast] = useState(null);
-  const [memoPanelOpen, setMemoPanelOpen] = useState(true);
   const saveTimeoutRef = useRef(null);
 
-  // localStorage에서 메모 불러오기
+  const SECTIONS = activeTab === 'concept' ? SECTIONS_CONCEPT : SECTIONS_PLATFORM;
+
   useEffect(() => {
-    const saved = localStorage.getItem('onmam_meeting_memo');
-    if (saved) {
-      setMemo(saved);
-    }
+    const saved = localStorage.getItem('onmam_combined_memo');
+    if (saved) setMemo(saved);
   }, []);
 
-  // 메모 저장 (디바운스)
+  useEffect(() => {
+    setActiveSection(SECTIONS[0].id);
+  }, [activeTab]);
+
   const saveMemo = (value) => {
     setMemo(value);
-    
-    if (saveTimeoutRef.current) {
-      clearTimeout(saveTimeoutRef.current);
-    }
-    
+    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     saveTimeoutRef.current = setTimeout(() => {
-      localStorage.setItem('onmam_meeting_memo', value);
+      localStorage.setItem('onmam_combined_memo', value);
     }, 500);
   };
 
-  // 메모 복사
   const copyMemo = () => {
-    if (!memo.trim()) {
-      setToast('작성된 메모가 없습니다');
-      setTimeout(() => setToast(null), 2000);
-      return;
-    }
-
-    const header = `📝 온맘마켓 컨셉 회의 메모\n작성일: ${new Date().toLocaleDateString('ko-KR')}\n\n${'='.repeat(40)}\n\n`;
-    
-    navigator.clipboard.writeText(header + memo).then(() => {
-      setToast('✅ 메모가 복사되었습니다!');
-      setTimeout(() => setToast(null), 2000);
-    });
+    if (!memo.trim()) { setToast('작성된 메모가 없습니다'); setTimeout(() => setToast(null), 2000); return; }
+    const header = `📝 온맘마켓 · 공구플랫폼 미팅 메모\n작성일: ${new Date().toLocaleDateString('ko-KR')}\n\n${'='.repeat(40)}\n\n`;
+    navigator.clipboard.writeText(header + memo).then(() => { setToast('✅ 메모가 복사되었습니다!'); setTimeout(() => setToast(null), 2000); });
   };
 
-  // 메모 초기화
   const clearMemo = () => {
-    if (window.confirm('메모를 삭제하시겠습니까?')) {
-      setMemo('');
-      localStorage.removeItem('onmam_meeting_memo');
-      setToast('메모가 초기화되었습니다');
-      setTimeout(() => setToast(null), 2000);
-    }
+    if (window.confirm('메모를 삭제하시겠습니까?')) { setMemo(''); localStorage.removeItem('onmam_combined_memo'); }
   };
 
   const currentIndex = SECTIONS.findIndex(s => s.id === activeSection);
 
   const goTo = (direction) => {
     const newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
-    if (newIndex >= 0 && newIndex < SECTIONS.length) {
-      setActiveSection(SECTIONS[newIndex].id);
+    if (newIndex >= 0 && newIndex < SECTIONS.length) setActiveSection(SECTIONS[newIndex].id);
+  };
+
+  const renderConceptSection = () => {
+    switch (activeSection) {
+      case 'market':        return <Concept_Market />;
+      case 'positioning':   return <Concept_Positioning />;
+      case 'platform':      return <Concept_Platform />;
+      case 'flow':          return <Concept_Flow />;
+      case 'mvp':           return <Concept_MVP />;
+      case 'cost':          return <Concept_Cost />;
+      case 'kpi':           return <Concept_KPI />;
+      case 'risk':          return <Concept_Risk />;
+      case 'gtm':           return <Concept_GTM />;
+      case 'discussion':    return <Concept_Discussion />;
+      case 'openquestions': return <Concept_OpenQuestions />;
+      default:              return <Concept_Market />;
     }
   };
 
-  const renderSection = () => {
+  const renderPlatformSection = () => {
     switch (activeSection) {
-      case 'market': return <Section1_Market />;
-      case 'positioning': return <Section2_Positioning />;
-      case 'platform': return <Section3_Platform />;
-      case 'flow': return <Section4_Flow />;
-      case 'mvp': return <Section5_MVP />;
-      case 'cost': return <Section6_Cost />;
-      case 'kpi': return <Section7_KPI />;
-      case 'risk': return <Section8_Risk />;
-      case 'gtm': return <Section9_GTM />;
-      case 'discussion': return <Section10_Discussion />;
-      case 'openquestions': return <Section11_OpenQuestions />;
-      default: return <Section1_Market />;
+      case 'p_market':   return <Platform_Market />;
+      case 'p_vision':   return <Platform_Vision />;
+      case 'p_roadmap':  return <Platform_Roadmap />;
+      case 'p_cost':     return <Platform_Cost />;
+      case 'p_webvsapp': return <Platform_WebVsApp />;
+      case 'p_schedule': return <Platform_Schedule />;
+      case 'p_kpi':      return <Platform_KPI />;
+      case 'p_risk':     return <Platform_Risk />;
+      default:           return <Platform_Market />;
     }
   };
+
+  const isConceptTab = activeTab === 'concept';
 
   return (
-    <div className="app">
-      <nav className="sidebar">
-        <div className="sidebar-header">
-          <div className="logo">🥬 온맘마켓</div>
-          <div className="subtitle">플랫폼 컨셉 기획안</div>
-        </div>
-        <div className="nav-section">
-          {SECTIONS.map((section) => (
-            <div
-              key={section.id}
-              className={`nav-item ${activeSection === section.id ? 'active' : ''}`}
-              onClick={() => setActiveSection(section.id)}
-            >
-              <div className="num">{section.num}</div>
-              <span>{section.title}</span>
-            </div>
-          ))}
-        </div>
-      </nav>
+    <div>
+      {/* Top Tabs */}
+      <div className="top-tabs">
+        <button
+          className={`top-tab ${isConceptTab ? 'active green' : ''}`}
+          onClick={() => setActiveTab('concept')}
+        >
+          🥬 온맘마켓 컨셉
+        </button>
+        <button
+          className={`top-tab ${!isConceptTab ? 'active' : ''}`}
+          onClick={() => setActiveTab('platform')}
+        >
+          🛒 공구플랫폼 기획
+        </button>
+      </div>
 
-      <main className="main">
-        {renderSection()}
-        <div className="nav-buttons">
-          <button 
-            className="nav-btn nav-btn-prev" 
-            onClick={() => goTo('prev')}
-            disabled={currentIndex === 0}
-          >
-            ← 이전
-          </button>
-          <button 
-            className="nav-btn nav-btn-next" 
-            onClick={() => goTo('next')}
-            disabled={currentIndex === SECTIONS.length - 1}
-          >
-            다음 →
-          </button>
-        </div>
-      </main>
-
-      {/* 메모 토글 버튼 (모바일/작은 화면용) */}
-      <button 
-        className={`memo-toggle ${memoPanelOpen ? 'open' : ''}`}
-        onClick={() => setMemoPanelOpen(!memoPanelOpen)}
-      >
-        {memoPanelOpen ? '→' : '📝'}
-      </button>
-
-      {/* 메모 패널 */}
-      <aside className={`memo-panel ${memoPanelOpen ? 'open' : ''}`}>
-        <div className="memo-header">
-          <div className="memo-header-title">📝 회의 메모</div>
-          <div className="memo-header-desc">자동 저장 · 로컬 저장</div>
-        </div>
-
-        <div className="memo-content">
-          <textarea
-            className="memo-textarea"
-            placeholder={`회의 중 메모를 자유롭게 작성하세요...\n\n예시:\n• 대표님 의견:\n• 결정 사항:\n• 추가 확인 필요:\n• Action Item:`}
-            value={memo}
-            onChange={(e) => saveMemo(e.target.value)}
-          />
-        </div>
-
-        <div className="memo-footer">
-          <button className="memo-btn memo-btn-primary" onClick={copyMemo}>
-            📋 메모 복사하기
-          </button>
-          <button className="memo-btn memo-btn-secondary" onClick={clearMemo}>
-            🗑️ 초기화
-          </button>
-          <div className="memo-saved">
-            {memo.trim() ? `${memo.length}자 작성됨` : '메모 없음'}
+      <div className="app">
+        {/* Sidebar */}
+        <nav className="sidebar">
+          <div className="sidebar-header">
+            <div className="logo">{isConceptTab ? '🥬 온맘마켓' : '🛒 플랫폼'}</div>
+            <div className="subtitle">{isConceptTab ? '컨셉 기획안 v2' : '사업 기획'}</div>
           </div>
-        </div>
-      </aside>
+          <div className="nav-section">
+            {SECTIONS.map((section) => (
+              <div
+                key={section.id}
+                className={`nav-item ${activeSection === section.id ? (isConceptTab ? 'active green' : 'active') : ''}`}
+                onClick={() => setActiveSection(section.id)}
+              >
+                <div className="num">{section.num}</div>
+                <span>{section.title}</span>
+              </div>
+            ))}
+          </div>
+        </nav>
 
-      {/* 토스트 메시지 */}
+        {/* Main Content */}
+        <main className="main">
+          {isConceptTab
+            ? <div className="concept-section">{renderConceptSection()}</div>
+            : renderPlatformSection()
+          }
+          <div className="nav-buttons">
+            <button className="nav-btn nav-btn-prev" onClick={() => goTo('prev')} disabled={currentIndex === 0}>
+              ← 이전
+            </button>
+            <button
+              className={`nav-btn nav-btn-next ${isConceptTab ? 'green' : ''}`}
+              onClick={() => goTo('next')}
+              disabled={currentIndex === SECTIONS.length - 1}
+            >
+              다음 →
+            </button>
+          </div>
+        </main>
+
+        {/* Memo Panel */}
+        <aside className="memo-panel">
+          <div className="memo-header">
+            <div className="memo-header-title">📝 미팅 메모</div>
+            <div className="memo-header-desc">자동 저장 · 로컬 저장</div>
+          </div>
+          <div className="memo-content">
+            <textarea
+              className="memo-textarea"
+              placeholder={`미팅 중 메모...\n\n• 논의 사항:\n• 결정 사항:\n• Action Item:`}
+              value={memo}
+              onChange={(e) => saveMemo(e.target.value)}
+            />
+          </div>
+          <div className="memo-footer">
+            <button className="memo-btn memo-btn-primary" onClick={copyMemo}>📋 메모 복사</button>
+            <button className="memo-btn memo-btn-secondary" onClick={clearMemo}>🗑️ 초기화</button>
+            <div className="memo-saved">{memo.trim() ? `${memo.length}자` : '메모 없음'}</div>
+          </div>
+        </aside>
+      </div>
+
       {toast && <div className="memo-toast">{toast}</div>}
     </div>
   );
